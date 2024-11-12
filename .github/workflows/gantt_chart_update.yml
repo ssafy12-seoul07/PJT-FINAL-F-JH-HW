@@ -27,9 +27,11 @@ jobs:  # 하나 이상의 작업 정의
 
       - name: Commit and Push Changes
         if: success()
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "GitHub Actions"
-          git add gantt_chart.png
-          git commit -m "Update Gantt Chart"
-          git push
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: |
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "GitHub Actions"
+            git add gantt_chart.png
+            git commit -m "Update Gantt Chart"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW.git
