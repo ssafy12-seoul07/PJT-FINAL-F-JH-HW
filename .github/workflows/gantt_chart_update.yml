@@ -29,10 +29,10 @@ jobs:
       - name: Commit and Push Changes
         if: success()
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}  # PAT 사용
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN1 }}
         run: |
-          git config --local user.email "sonjh970226@gmail.com"  # 자신의 이메일
-          git config --local user.name "SON1205"  # 자신의 이름
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Actions"
           git add charts/*.png
           git commit -m "Update Gantt Chart for $(date +'%Y-%m-%d')"
-          git push https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW.git main
+          git push https://x-access-token:${{ secrets.ACCESS_TOKEN1 }}@github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW.git main
