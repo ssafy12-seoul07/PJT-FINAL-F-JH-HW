@@ -23,8 +23,8 @@ jobs:  # 하나 이상의 작업 정의
           pip install matplotlib python-dateutil requests  # 필요한 Python 패키지 설치
 
       - name: Generate Gantt Chart
-        run: python ./generate_gantt_chart.py  # Gantt Chart 생성 스크립트 실행
-        
+        run: python generate_gantt_chart.py  # Gantt Chart 생성 스크립트 실행
+
       - name: Commit and Push Changes
         if: success()
         run: |
