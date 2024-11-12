@@ -54,5 +54,5 @@ plt.grid(visible=True, axis='x', linestyle='--', color='gray', alpha=0.6)
 # Adjust layout for a clean appearance
 plt.tight_layout()
 
-# Display the chart
-plt.show()
+# Save the chart as an image file
+plt.savefig("gantt_chart.png", format="png")
