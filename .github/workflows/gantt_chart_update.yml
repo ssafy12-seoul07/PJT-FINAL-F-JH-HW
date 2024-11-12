@@ -2,7 +2,7 @@ name: Update Gantt Chart
 
 on:
   schedule:
-    - cron: '45 8 * * *'
+    - cron: '45 8 * * *'  # 매일 오전 8시 45분에 실행
   workflow_dispatch:
 
 jobs:
@@ -29,10 +29,10 @@ jobs:
       - name: Commit and Push Changes
         if: success()
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions"
           git add charts/*.png
           git commit -m "Update Gantt Chart for $(date +'%Y-%m-%d')"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW.git
+          git push https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW.git
