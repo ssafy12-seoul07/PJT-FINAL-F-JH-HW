@@ -1,3 +1,4 @@
+import os
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from datetime import datetime
@@ -9,6 +10,10 @@ issues = [
     {"title": "Issue 3", "start_date": datetime(2024, 11, 10), "end_date": datetime(2024, 11, 20)},
     {"title": "Issue 4", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 25)},
 ]
+
+# 폴더 경로 설정 및 폴더 생성 (존재하지 않으면 생성)
+output_dir = "charts"
+os.makedirs(output_dir, exist_ok=True)
 
 # Generate Gantt Chart with a clean and simple design
 fig, ax = plt.subplots(figsize=(12, 7))
@@ -54,5 +59,7 @@ plt.grid(visible=True, axis='x', linestyle='--', color='gray', alpha=0.6)
 # Adjust layout for a clean appearance
 plt.tight_layout()
 
-# Save the chart as an image file
-plt.savefig("gantt_chart.png", format="png")
+# Save the chart with today's date in the filename and in the specified folder
+today_str = today.strftime("%Y%m%d")
+output_path = os.path.join(output_dir, f"gantt_chart_{today_str}.png")
+plt.savefig(output_path, format="png")

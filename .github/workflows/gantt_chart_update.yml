@@ -1,37 +1,38 @@
-name: Update Gantt Chart  # 워크플로우의 이름
+name: Update Gantt Chart
 
-on:  # 트리거 설정
+on:
   schedule:
-    - cron: '45 8 * * *'  # 매일 오전 8시에 실행
-  workflow_dispatch:      # 수동으로 워크플로우를 실행할 수 있는 옵션
+    - cron: '45 8 * * *'
+  workflow_dispatch:
 
-jobs:  # 하나 이상의 작업 정의
+jobs:
   update-gantt:
-    runs-on: ubuntu-latest  # GitHub이 제공하는 가상 머신 환경 설정
-    steps:                  # 작업 단계 설정
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Checkout repository
-        uses: actions/checkout@v2  # 리포지토리를 체크아웃하여 작업 디렉토리에 복사
+        uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'  # Python 버전 설정
+          python-version: '3.x'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install matplotlib python-dateutil requests  # 필요한 Python 패키지 설치
+          pip install matplotlib python-dateutil requests
 
       - name: Generate Gantt Chart
-        run: python generate_gantt_chart.py  # Gantt Chart 생성 스크립트 실행
+        run: python generate_gantt_chart.py
 
       - name: Commit and Push Changes
         if: success()
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          run: |
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "GitHub Actions"
-            git add gantt_chart.png
-            git commit -m "Update Gantt Chart"
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW.git
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Actions"
+          git add charts/*.png
+          git commit -m "Update Gantt Chart for $(date +'%Y-%m-%d')"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW.git
