@@ -5,10 +5,14 @@ from datetime import datetime
 
 # Sample data for issues
 issues = [
-    {"title": "Issue 1", "start_date": datetime(2024, 11, 1), "end_date": datetime(2024, 11, 10)},
-    {"title": "Issue 2", "start_date": datetime(2024, 11, 5), "end_date": datetime(2024, 11, 15)},
-    {"title": "Issue 3", "start_date": datetime(2024, 11, 10), "end_date": datetime(2024, 11, 20)},
-    {"title": "Issue 4", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 25)},
+    {"title": "아이디어 확정", "start_date": datetime(2024, 11, 11), "end_date": datetime(2024, 11, 12)},
+    {"title": "UI 및 DB 설계", "start_date": datetime(2024, 11, 12), "end_date": datetime(2024, 11, 14)},
+    {"title": "데이터 수집", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 17)},
+    {"title": "백엔드 개발", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 24)},
+    {"title": "프런트엔드 개발", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 24)},
+    {"title": "중간 점검", "start_date": datetime(2024, 11, 20), "end_date": datetime(2024, 11, 21)},
+    {"title": "전체 기능 테스트", "start_date": datetime(2024, 11, 25), "end_date": datetime(2024, 11, 26)},
+    {"title": "최종 발표 준비", "start_date": datetime(2024, 11, 26), "end_date": datetime(2024, 11, 27)},
 ]
 
 # 폴더 경로 설정 및 폴더 생성 (존재하지 않으면 생성)
@@ -19,8 +23,9 @@ os.makedirs(output_dir, exist_ok=True)
 fig, ax = plt.subplots(figsize=(12, 7))
 
 # Define bar height and colors for a clean look
-bar_height = 0.4
-colors = ["#6baed6", "#3182bd", "#08519c", "#08306b"]
+bar_height = 0.2
+colors = ["#caf0f8", "#ade8f4", "#90e0ef", "#48cae4", "#00b4d8", "#0096c7", 
+    "#0077b6", "#023e8a", "#03045e"]
 today = datetime.now()
 
 # Plot each issue as a simple bar
@@ -40,7 +45,7 @@ for i, issue in enumerate(issues):
 ax.axvline(mdates.date2num(today), color="red", linestyle="--", linewidth=1.2, label="Today")
 
 # Set x-axis formatting for dates and enhance layout
-ax.xaxis.set_major_locator(mdates.DayLocator(interval=3))
+ax.xaxis.set_major_locator(mdates.DayLocator(interval=2))
 ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m-%d"))
 plt.xticks(rotation=45, fontsize=9, color='gray')
 plt.yticks(fontsize=10, color='gray')
