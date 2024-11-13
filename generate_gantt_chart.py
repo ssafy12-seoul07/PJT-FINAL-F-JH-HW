@@ -2,6 +2,8 @@ import os
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from datetime import datetime
+import matplotlib
+matplotlib.rcParams['font.family'] = 'Malgun Gothic'
 
 # Sample data for issues
 issues = [
