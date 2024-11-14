@@ -8,8 +8,9 @@ matplotlib.rcParams['font.family'] = 'Malgun Gothic'
 # Sample data for issues
 issues = [
     {"title": "Idea Confirmation", "start_date": datetime(2024, 11, 11), "end_date": datetime(2024, 11, 12)},
-    {"title": "UI / DB constructing", "start_date": datetime(2024, 11, 12), "end_date": datetime(2024, 11, 14)},
+    {"title": "UI/DB constructing", "start_date": datetime(2024, 11, 12), "end_date": datetime(2024, 11, 14)},
     {"title": "Data Collecting", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 17)},
+    {"title": "Prototype constructing", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 17)},
     {"title": "BackEnd Developing", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 24)},
     {"title": "FrontEnd Developing", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 24)},
     {"title": "Internal Check", "start_date": datetime(2024, 11, 20), "end_date": datetime(2024, 11, 21)},
