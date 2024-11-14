@@ -7,14 +7,14 @@ matplotlib.rcParams['font.family'] = 'Malgun Gothic'
 
 # Sample data for issues
 issues = [
-    {"title": "아이디어 확정", "start_date": datetime(2024, 11, 11), "end_date": datetime(2024, 11, 12)},
-    {"title": "UI 및 DB 설계", "start_date": datetime(2024, 11, 12), "end_date": datetime(2024, 11, 14)},
-    {"title": "데이터 수집", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 17)},
-    {"title": "백엔드 개발", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 24)},
-    {"title": "프런트엔드 개발", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 24)},
-    {"title": "중간 점검", "start_date": datetime(2024, 11, 20), "end_date": datetime(2024, 11, 21)},
-    {"title": "전체 기능 테스트", "start_date": datetime(2024, 11, 25), "end_date": datetime(2024, 11, 26)},
-    {"title": "최종 발표 준비", "start_date": datetime(2024, 11, 26), "end_date": datetime(2024, 11, 27)},
+    {"title": "Idea Confirmation", "start_date": datetime(2024, 11, 11), "end_date": datetime(2024, 11, 12)},
+    {"title": "UI / DB constructing", "start_date": datetime(2024, 11, 12), "end_date": datetime(2024, 11, 14)},
+    {"title": "Data Collecting", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 17)},
+    {"title": "BackEnd Developing", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 24)},
+    {"title": "FrontEnd Developing", "start_date": datetime(2024, 11, 15), "end_date": datetime(2024, 11, 24)},
+    {"title": "Internal Check", "start_date": datetime(2024, 11, 20), "end_date": datetime(2024, 11, 21)},
+    {"title": "Final Features Check", "start_date": datetime(2024, 11, 25), "end_date": datetime(2024, 11, 26)},
+    {"title": "Final Presentation", "start_date": datetime(2024, 11, 26), "end_date": datetime(2024, 11, 27)},
 ]
 
 # 폴더 경로 설정 및 폴더 생성 (존재하지 않으면 생성)
