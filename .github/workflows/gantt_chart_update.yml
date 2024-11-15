@@ -2,7 +2,7 @@ name: Update Gantt Chart
 
 on:
   schedule:
-    - cron: '45 23 * * *'  # 매일 8시 45분에 실행
+    - cron: '45 23 * * *'  # 매일 8시 45분에 실행 (UTC 기준으로는 23시 45분)
   workflow_dispatch:
 
 jobs:
@@ -34,5 +34,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions"
           git add charts/*.png
-          git commit -m "Update Gantt Chart for $(date +'%Y-%m-%d')"
+          git commit -m "Update Gantt Chart for $(TZ=Asia/Seoul date +'%Y-%m-%d')"
           git push https://x-access-token:${{ secrets.ACCESS_TOKEN1 }}@github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW.git main
