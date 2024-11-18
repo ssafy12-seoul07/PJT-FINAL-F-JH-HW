@@ -1,6 +1,6 @@
-drop database if exists ssafy_SONNE;
-create database ssafy_SONNE;
-use ssafy_SONNE;
+drop database if exists ssafy_urs;
+create database ssafy_urs;
+use ssafy_urs;
 
 CREATE TABLE `User` (
     `user_id` VARCHAR(255) NOT NULL,
@@ -44,14 +44,14 @@ CREATE TABLE `Review` (
 CREATE TABLE `Location` (
     `location_id` INT(10) NOT NULL AUTO_INCREMENT,
     `route_id` INT(10) UNSIGNED NOT NULL,
-    `starting_longitude` DECIMAL(9, 6) NOT NULL COMMENT '출발지 경도',
     `starting_latitude` DECIMAL(9, 6) NOT NULL COMMENT '출발지 위도',
+    `starting_longitude` DECIMAL(9, 6) NOT NULL COMMENT '출발지 경도',
     `starting_img_url` VARCHAR(255) NOT NULL COMMENT '출발지 이미지 URL',
-    `middle_longitude` DECIMAL(9, 6) NOT NULL COMMENT '중간 지점 경도',
     `middle_latitude` DECIMAL(9, 6) NOT NULL COMMENT '중간 지점 위도',
+	`middle_longitude` DECIMAL(9, 6) NOT NULL COMMENT '중간 지점 경도',
     `middle_img_url` VARCHAR(255) NOT NULL COMMENT '중간 지점 이미지 URL',
-    `ending_latitude` DECIMAL(9, 6) NOT NULL COMMENT '도착지 위도',
     `ending_longitude` DECIMAL(9, 6) NOT NULL COMMENT '도착지 경도',
+	`ending_latitude` DECIMAL(9, 6) NOT NULL COMMENT '도착지 위도',
     `ending_img_url` VARCHAR(255) NOT NULL COMMENT '도착지 이미지 URL',
     PRIMARY KEY (`location_id`),
     FOREIGN KEY (`route_id`) REFERENCES `Route`(`route_id`)
@@ -65,6 +65,7 @@ INSERT INTO `User` (`user_id`, `password`, `name`, `phone`) VALUES
 ('user3', 'password789', 'Charlie', '01056781234');
 
 INSERT INTO `Route` (`route_id`, `district_name`, `theme_name`, `duration_time`) VALUES
+-- (숫자, '구이름', 'demure, calmly, enthusiastically, alone 중 택1', '15, 25, 45'
 (1, 'Seoul', 'Nature', 120),
 (2, 'Busan', 'Cityscape', 90),
 (3, 'Jeju', 'Adventure', 180);
@@ -79,10 +80,10 @@ INSERT INTO `Review` (`review_id`, `user_id`, `route_id`, `reg_date`, `rating`) 
 (2, 'user2', 2, '2024-11-05', 5),
 (3, 'user3', 3, '2024-11-10', 3);
 
-INSERT INTO `Location` (`location_id`, `route_id`, `starting_longitude`, `starting_latitude`, `starting_img_url`, `middle_longitude`, `middle_latitude`, `middle_img_url`, `ending_latitude`, `ending_longitude`, `ending_img_url`) VALUES
-(1, 1, 126.9784, 37.5665, 'https://example.com/start1.jpg', 127.0010, 37.5800, 'https://example.com/middle1.jpg', 127.0150, 37.5900, 'https://example.com/end1.jpg'),
-(2, 2, 129.0756, 35.1796, 'https://example.com/start2.jpg', 129.0900, 35.1900, 'https://example.com/middle2.jpg', 129.1000, 35.2000, 'https://example.com/end2.jpg'),
-(3, 3, 126.5312, 33.4996, 'https://example.com/start3.jpg', 126.5400, 33.5100, 'https://example.com/middle3.jpg', 126.5500, 33.5200, 'https://example.com/end3.jpg');
+INSERT INTO `Location` (`location_id`, `route_id`,  `starting_latitude`, `starting_longitude`, `starting_img_url`,  `middle_latitude`, `middle_longitude`, `middle_img_url`,  `ending_longitude`, `ending_latitude`, `ending_img_url`) VALUES
+-- ('auto increment', 'route table과  syncing', '' )
+-- (1, 1, 37.563371, 126.987245, '구이름_테마_소요시간_A.png  --- jongro_calmly_15_A.png', 37.563371, 126.987245, '구이름_테마_소요시간_A.png  --- jongro_calmly_15_B.png', 37.563371, 126.987245, '구이름_테마_소요시간_A.png  --- jongro_calmly_15_C.png',),
 
+-- Route -- (숫자, '구이름', 'demure, calmly, enthusiastically, alone 중 택1', '15, 25, 45'
 
 -- select * from Review;
