@@ -12,23 +12,37 @@ CREATE TABLE `User` (
 
 CREATE TABLE `Route` (
     `route_id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `district_name` VARCHAR(100) NOT NULL,
-    `theme_name` VARCHAR(50) NOT NULL,
-    `duration_time` SMALLINT UNSIGNED NOT NULL COMMENT '소요 시간(분 단위)',
+    `district` VARCHAR(100) NOT NULL,
+    `theme` VARCHAR(50) NOT NULL,
+    `duration` SMALLINT UNSIGNED NOT NULL COMMENT '소요 시간(분 단위)',
+    `calorie` INT(10) NOT NULL,
     PRIMARY KEY (`route_id`)
 );
 
-CREATE TABLE `Bookmark_Completed_Route` (
+CREATE TABLE `Bookmark` (
     `user_id` VARCHAR(255) NOT NULL,
     `route_id` INT(10) UNSIGNED NOT NULL,
-    `is_starting_point_verified` BOOLEAN DEFAULT FALSE COMMENT '출발지 확인 여부',
-    `is_middle_point_verified` BOOLEAN DEFAULT FALSE COMMENT '중간지점 확인 여부',
-    `is_ending_point_verified` BOOLEAN DEFAULT FALSE COMMENT '도착지 확인 여부',
-    `bookmark` BOOLEAN NOT NULL DEFAULT FALSE COMMENT '찜/완료 여부',
     PRIMARY KEY (`user_id`, `route_id`),
     FOREIGN KEY (`user_id`) REFERENCES `User`(`user_id`),
     FOREIGN KEY (`route_id`) REFERENCES `Route`(`route_id`)
 );
+
+
+-- CREATE TABLE `Location` (
+--     `location_id` INT(10) NOT NULL AUTO_INCREMENT,
+--     `route_id` INT(10) UNSIGNED NOT NULL,
+--     `starting_latitude` DECIMAL(9, 6) NOT NULL COMMENT '출발지 위도',
+--     `starting_longitude` DECIMAL(9, 6) NOT NULL COMMENT '출발지 경도',
+--     `starting_img_url` VARCHAR(255) NOT NULL COMMENT '출발지 이미지 URL',
+--     `middle_latitude` DECIMAL(9, 6) NOT NULL COMMENT '중간 지점 위도',
+-- 	`middle_longitude` DECIMAL(9, 6) NOT NULL COMMENT '중간 지점 경도',
+--     `middle_img_url` VARCHAR(255) NOT NULL COMMENT '중간 지점 이미지 URL',
+--     `ending_longitude` DECIMAL(9, 6) NOT NULL COMMENT '도착지 경도',
+-- 	`ending_latitude` DECIMAL(9, 6) NOT NULL COMMENT '도착지 위도',
+--     `ending_img_url` VARCHAR(255) NOT NULL COMMENT '도착지 이미지 URL',
+--     PRIMARY KEY (`location_id`),
+--     FOREIGN KEY (`route_id`) REFERENCES `Route`(`route_id`)
+-- );
 
 CREATE TABLE `Review` (
     `review_id` INT(10) NOT NULL AUTO_INCREMENT,
@@ -41,22 +55,6 @@ CREATE TABLE `Review` (
     FOREIGN KEY (`route_id`) REFERENCES `Route`(`route_id`)
 );
 
-CREATE TABLE `Location` (
-    `location_id` INT(10) NOT NULL AUTO_INCREMENT,
-    `route_id` INT(10) UNSIGNED NOT NULL,
-    `starting_latitude` DECIMAL(9, 6) NOT NULL COMMENT '출발지 위도',
-    `starting_longitude` DECIMAL(9, 6) NOT NULL COMMENT '출발지 경도',
-    `starting_img_url` VARCHAR(255) NOT NULL COMMENT '출발지 이미지 URL',
-    `middle_latitude` DECIMAL(9, 6) NOT NULL COMMENT '중간 지점 위도',
-	`middle_longitude` DECIMAL(9, 6) NOT NULL COMMENT '중간 지점 경도',
-    `middle_img_url` VARCHAR(255) NOT NULL COMMENT '중간 지점 이미지 URL',
-    `ending_longitude` DECIMAL(9, 6) NOT NULL COMMENT '도착지 경도',
-	`ending_latitude` DECIMAL(9, 6) NOT NULL COMMENT '도착지 위도',
-    `ending_img_url` VARCHAR(255) NOT NULL COMMENT '도착지 이미지 URL',
-    PRIMARY KEY (`location_id`),
-    FOREIGN KEY (`route_id`) REFERENCES `Route`(`route_id`)
-);
-
 
 -- 더미데이터 삽입
 INSERT INTO `User` (`user_id`, `password`, `name`, `phone`) VALUES
@@ -64,11 +62,11 @@ INSERT INTO `User` (`user_id`, `password`, `name`, `phone`) VALUES
 ('user2', 'password456', 'Bob', '01087654321'),
 ('user3', 'password789', 'Charlie', '01056781234');
 
-INSERT INTO `Route` (`route_id`, `district_name`, `theme_name`, `duration_time`) VALUES
+INSERT INTO `Route` (`route_id`, `district_name`, `theme_name`, `duration_time`,`calorie`) VALUES
 -- (숫자, '구이름', 'demure, calmly, enthusiastically, alone 중 택1', '15, 25, 45'
-(1, 'Seoul', 'Nature', 120),
-(2, 'Busan', 'Cityscape', 90),
-(3, 'Jeju', 'Adventure', 180);
+(1, 'Seoul', 'Nature', 120,100),
+(2, 'Busan', 'Cityscape', 90, 200),
+(3, 'Jeju', 'Adventure', 180,300);
 
 INSERT INTO `Bookmark_Completed_Route` (`user_id`, `route_id`, `is_starting_point_verified`, `is_middle_point_verified`, `is_ending_point_verified`, `bookmark`, `created_at`) VALUES
 ('user1', 1, TRUE, FALSE, FALSE, FALSE, NOW()),
