@@ -10,7 +10,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 100px;
+  height: 70px;
   background-color: rgba(34, 34, 34, 0.7);
   color: #fff;
   display: flex;

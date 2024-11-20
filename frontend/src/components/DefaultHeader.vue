@@ -10,7 +10,6 @@
   </header>
 </template>
 
-
 <script>
 export default {
   methods: {
@@ -38,8 +37,8 @@ export default {
 }
 
 .logo-image {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   margin-right: 10px;
 }
 
@@ -58,6 +57,6 @@ export default {
 }
 
 .icon {
-  font-size: 30px;
+  font-size: 25px;
 }
 </style>

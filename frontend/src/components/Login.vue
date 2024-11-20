@@ -1,38 +1,65 @@
 <template>
-  <div class="modal-content">
-    <button class="close-btn" @click="$router.push('/')">×</button>
+  <div class="main-content">
+    <div class="modal-content">
+      <button class="close-btn" @click="$router.push('/')">×</button>
 
-    <div class="form signup">
-      <div class="form-header">Login</div>
-      <div class="form-elements">
-        <input type="text" placeholder="👤 Type your ID" aria-label="User ID" />
-        <input type="password" placeholder="🔑 Type your Password" aria-label="Password" />
-        <div class="form-element forgot-password">
-          <p>Forgot password?</p>
+      <div class="form signup">
+        <div class="form-header">Login</div>
+        <div class="form-elements">
+          <input type="text" placeholder="👤 Type your ID" aria-label="User ID" />
+          <input type="password" placeholder="🔑 Type your Password" aria-label="Password" />
+          <div class="form-element forgot-password">
+            <p>Forgot password?</p>
+          </div>
+          <button id="submit-btn">LOGIN</button>
         </div>
-        <button id="submit-btn">LOGIN</button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const username = ref('');
+const password = ref('');
+const errorMessage = ref('');
+const router = useRouter();
+
+const handleLogin = () => {
+  // 예제: 간단한 유효성 검증
+  if (username.value === 'user' && password.value === 'password') {
+    // 로그인 성공 시 메인 페이지로 이동
+    router.push('/mainPage');
+  } else {
+    // 로그인 실패 시 에러 메시지 표시
+    errorMessage.value = 'Invalid username or password.';
+  }
+};
 </script>
 
 <style scoped>
+.main-content {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal-content {
   background: rgb(22, 22, 22);
   border: 0.0625rem solid rgba(128, 128, 128, 0.4);
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.8) 0px 0.25rem 0.5rem 0px;
-  box-sizing: border-box;
   color: rgba(255, 255, 255, 0.7);
-  width: 100%;
-  margin: 1.5rem;
-  max-height: min(60%, 80% - 3rem);
-  max-width: 51.8125rem;
-  overflow: auto hidden;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
   position: relative;
+  text-align: center;
 }
 
 .close-btn {
