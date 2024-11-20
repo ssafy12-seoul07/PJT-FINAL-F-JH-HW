@@ -2,9 +2,12 @@ package com.ssafy.urs.model.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.ssafy.urs.model.dao.ReviewDao;
 import com.ssafy.urs.model.dto.Review;
 
+@Service
 public class ReviewServiceImpl implements ReviewService{
 	private final ReviewDao vd;
 	
@@ -19,7 +22,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public List<Review> getAllReviews(int userId) {
+	public List<Review> getAllReviews(String userId) {
 	return vd.selectAllReviews(userId);
 	}
 

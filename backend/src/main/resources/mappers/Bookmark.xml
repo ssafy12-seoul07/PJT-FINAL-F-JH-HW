@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE
+<!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.ssafy.urc.model.dao.BookmarkDao">
+  <mapper namespace="com.ssafy.urs.model.dao.BookmarkDao">
   
-  	<insert id="insertBookmark" parameterType="Route">
+  
+  	<insert id="insertBookmark" parameterType="Bookmark">
 		INSERT INTO Bookmark (user_id, route_id)
 		VALUES (#{userId}, #{routeId}) 
 		
 	</insert>
 	
-	<select id="selectAllBookmarks" parameterType="int">
+	<select id="selectAllBookmarks" parameterType="String" resultType="Bookmark">
 		SELECT *
 		FROM Bookmark
-		WHERE id=#{userId};
+		WHERE user_id=#{userId};
 	</select>
 	
-	<delete id="deletebookmark" parameterType="int">
+	<delete id="deleteBookmark" parameterType="int">
 		DELETE 
 		FROM Bookmark
-		WHERE id=#{routeId};
+		WHERE bookmark_id=#{bookmarkId};
 	</delete>
 	
 	

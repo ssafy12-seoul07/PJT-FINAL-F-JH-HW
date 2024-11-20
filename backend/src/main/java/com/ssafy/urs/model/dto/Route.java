@@ -8,7 +8,7 @@ public class Route {
 	private String routeAURL;
 	private String routeBURL;
 	
-	public Route() {}
+	public Route() {};
 
 	public Route(int routeId, String district, String theme, int duration, String routeAURL,
 			String routeBURL) {

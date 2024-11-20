@@ -8,7 +8,7 @@ public interface ReviewService {
 	
 	boolean addReview(Review review);
 	
-	List<Review> getAllReviews(int userId);
+	List<Review> getAllReviews(String userId);
 	
 	Review getReviewById(int reviewId);
 	

@@ -6,12 +6,14 @@ import com.ssafy.urs.model.dto.Route;
 
 public interface RouteService {
 	
-	Route getRouteByParam(String theme, String district, int duration);
-	
 	List<Route> getAllRoutes();
 	
-	Route getRouteById(int routeId);
-	
 	List<Route> getExampleRoutes();
+
+	Route getRouteById(int routeId);
+
+	Route getRouteByParam(String theme, String district, int duration);
+	
+	
 
 }

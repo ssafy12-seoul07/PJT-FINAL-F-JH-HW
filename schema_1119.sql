@@ -20,7 +20,7 @@ CREATE TABLE `Route` (
     PRIMARY KEY (`route_id`)
 );
 
-CREATE TABLE `Bookmark` (
+CREATE TABLE `Bookmark` (	
     `user_id` VARCHAR(255) NOT NULL,
     `route_id` INT(10) UNSIGNED NOT NULL,
     PRIMARY KEY (`user_id`, `route_id`),
@@ -67,7 +67,7 @@ INSERT INTO `Route` (`route_id`, `district`, `theme`, `duration`,`calorie`, `rou
 
 
 INSERT INTO `Bookmark` (`user_id`, `route_id`) 
-VALUES (1, 'hwlee333');
+VALUES ('hwlee333',1);
 
 INSERT INTO `Review` (`review_id`, `user_id`, `route_id`, `reg_date`, `rating`) VALUES
 (1, 'hwlee333', 1, '2024-11-01', 4);
