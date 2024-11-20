@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-page {
+  position: relative;
+  background: url('@/assets/background/background.png') no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+}
