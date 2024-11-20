@@ -2,9 +2,12 @@ package com.ssafy.urs.model.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.ssafy.urs.model.dao.RouteDao;
 import com.ssafy.urs.model.dto.Route;
 
+@Service
 public class RouteServiceImpl implements RouteService{
 	private final RouteDao rd;
 	
@@ -29,7 +32,7 @@ public class RouteServiceImpl implements RouteService{
 
 	@Override
 	public List<Route> getExampleRoutes() {
-		return rd.selectExampleRoute();
+		return rd.selectExampleRoutes();
 	};
 	
 	

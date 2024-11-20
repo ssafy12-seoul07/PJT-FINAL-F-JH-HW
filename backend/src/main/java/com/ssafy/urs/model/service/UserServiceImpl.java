@@ -1,15 +1,17 @@
 package com.ssafy.urs.model.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.ssafy.urs.model.dao.UserDao;
 import com.ssafy.urs.model.dto.User;
 
+@Service
 public class UserServiceImpl implements UserService {
 	
-	private final UserDao ud;
 	
-	public UserServiceImpl(UserDao ud) {
-		this.ud=ud;
-	}
+	@Autowired
+	UserDao ud;
 
 	@Override
 	public boolean addUser(User user) {
@@ -18,13 +20,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean deleteUser(int userId) {
+	public boolean deleteUser(String userId) {
 		int result = ud.deleteUser(userId);
 		return result > 0;
 	}
 
 	@Override
-	public User selectUserById(int userId) {
+	public User selectUserById(String userId) {
 		User user = ud.selectUserById(userId);
 		return null;
 	}

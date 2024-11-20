@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE
+<!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.ssafy.urc.model.dao.RouteDao">
+  <mapper namespace="com.ssafy.urs.model.dao.RouteDao">
   
-  	<select id="selectRouteByAttributes" resultType="com.ssafy.urs.model.dto.Route">
+	<select id="selectAllRoutes" resultType="Route">
+		SELECT *
+		FROM Route;
+	</select>
+	
+	<select id="selectExampleRoutes" resultType="Route">
+		SELECT *
+		FROM Route
+		LIMIT 3;
+	</select>
+	
+	<select id="selectRouteById" parameterType="int" resultType="Route">
+		SELECT *
+		FROM Route
+		WHERE route_id=#{routeId};
+	</select>
+
+  	<select id="selectRouteByAttributes"  parameterType = "Route" resultType="Route">
         SELECT *
         FROM Route
         WHERE theme = #{theme}
@@ -13,22 +30,6 @@
     </select>
 	
 	
-	<select id="selectAllRoutes">
-		SELECT *
-		FROM Route;
-	</select>
-	
-	<select id="selectExampleRoutes">
-		SELECT *
-		FROM Route
-		LIMIT 3;
-	</select>
-	
-	<select id="selectRouteById" parameterType="int">
-		SELECT *
-		FROM Route;
-		WHERE id=#{routeId};
-	</select>
 	
 
   
