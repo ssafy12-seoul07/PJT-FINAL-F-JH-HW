@@ -1,6 +1,7 @@
 <template>
     <div>
       <nav>
+        <RouterLink to="/">Home</RouterLink> | 
         <RouterLink :to="{ name: 'kakao' }">KakaoMap</RouterLink> | 
       </nav>
     </div>

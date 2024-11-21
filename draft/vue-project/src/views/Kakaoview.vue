@@ -1,6 +1,30 @@
+
+<template>
+  왜... 되지..
+  <KakaoMap :lat="33.450701" :lng="126.570667">
+    <KakaoMapMarker :lat="33.450701" :lng="126.570667" />
+    <KakaoMapCustomOverlay :lat="33.450701" :lng="126.570667" :content="content" :yAnchor="1.4" />
+  </KakaoMap>
+</template>
+
+
 <script setup>
 import { KakaoMap, KakaoMapCustomOverlay, KakaoMapMarker } from 'vue3-kakao-maps';
-const content = ` <div class="ex">
+
+
+const content = 
+// ` <div class="ex">
+  ` <div
+        style="
+          padding: 10px;
+          background-color: white;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        "
+      >
         <div style="font-weight: bold; margin-bottom: 5px">카카오 스페이스닷원</div>
         <div style="display: flex">
           <div style="margin-right: 10px">
@@ -15,22 +39,15 @@ const content = ` <div class="ex">
       </div>`;   
 </script>
 
-<template>
-  왜... 안되지..
-  <KakaoMap :lat="33.450701" :lng="126.570667">
-    <KakaoMapMarker :lat="33.450701" :lng="126.570667" />
-    <KakaoMapCustomOverlay :lat="33.450701" :lng="126.570667" :content="content" :yAnchor="1.4" />
-  </KakaoMap>
-</template>
 
 <style scoped>
-  .ex {
+  /* .ex {
     padding: 10px;
-   background-color: white;
-   border: 1px solid #ccc;
-   border-radius: 5px;
-   display: flex;
-   flex-direction: column;
-   align-items: flex-start;
-  }
+          background-color: white;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+  } */
 </style>
