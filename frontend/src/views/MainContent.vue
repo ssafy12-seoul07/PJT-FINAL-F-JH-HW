@@ -57,7 +57,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const navigateToOption = () => {
-  router.push("/option");
+  router.push("/form");
 };
 </script>
 

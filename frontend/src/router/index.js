@@ -3,6 +3,9 @@ import HomeContent from '@/views/HomeContent.vue';
 import Login from '@/components/Login.vue';
 import Signup from '@/components/Signup.vue';
 import MainContent from '@/views/MainContent.vue';
+import RouteForm from '@/views/RouteForm.vue';
+import UserProfile from '@/views/MypageContent.vue';
+import FormResult from '@/components/FormResult.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,23 +30,21 @@ const router = createRouter({
       name: MainContent,
       component: MainContent,
     },
-    // {
-    //   path: "/route",
-    //   name: "route",
-    //   component: TmdbView,
-    //   children: [
-    //     {
-    //       path: "popular",
-    //       name: "tmdbPopular",
-    //       component: TmdbPopular
-    //     },
-    //     {
-    //       path: "toprated",
-    //       name: "tmdbTopRated",
-    //       component: TmdbTopRated
-    //     }
-    //   ]
-    // }
+    {
+      path: '/form',
+      name: RouteForm,
+      component: RouteForm,
+    },
+    {
+      path: '/mypage/:id',
+      name: UserProfile,
+      component: UserProfile,
+    },
+    {
+      path: '/form/result',
+      name: FormResult,
+      component: FormResult,
+    },
   ],
 })
 
