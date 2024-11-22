@@ -29,17 +29,19 @@ CREATE TABLE `Bookmark` (
     FOREIGN KEY (`route_id`) REFERENCES `Route`(`route_id`)
 );
 
-
-CREATE TABLE `Location` (
+DROP TABLE `location`;
+CREATE TABLE `location`;
+SELECT * FROM location;
+	`route_id` INT(10) UNSIGNED NOT NULL,
     `location_id` INT(10) NOT NULL AUTO_INCREMENT,
-    `route_id` INT(10) UNSIGNED NOT NULL,
-    `starting_latitude` DECIMAL(9, 6) NOT NULL COMMENT '출발지 위도',
-    `starting_longitude` DECIMAL(9, 6) NOT NULL COMMENT '출발지 경도',
-    `middle_latitude` DECIMAL(9, 6) NOT NULL COMMENT '중간 지점 위도',
-	`middle_longitude` DECIMAL(9, 6) NOT NULL COMMENT '중간 지점 경도',
+    `location_name` VARCHAR(255) NOT NULL,
+    `A_latitude` DECIMAL(9, 6) NOT NULL COMMENT '출발지 위도',
+    `A_longitude` DECIMAL(9, 6) NOT NULL COMMENT '출발지 경도',
+    `center_latitude` DECIMAL(9, 6) NOT NULL COMMENT '중간 지점 위도',
+	`center_longitude` DECIMAL(9, 6) NOT NULL COMMENT '중간 지점 경도',
+    `B_longitude` DECIMAL(9, 6) NOT NULL COMMENT '도착지 경도',
+	`B_latitude` DECIMAL(9, 6) NOT NULL COMMENT '도착지 위도',
     `imgURL` TEXT NOT NULL,
-    `ending_longitude` DECIMAL(9, 6) NOT NULL COMMENT '도착지 경도',
-	`ending_latitude` DECIMAL(9, 6) NOT NULL COMMENT '도착지 위도',
     PRIMARY KEY (`location_id`),
     FOREIGN KEY (`route_id`) REFERENCES `Route`(`route_id`)
 );
