@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.ssafy.urs.model.dao.ReviewDao">
+  
+  	<insert id="insertReview" parameterType="Review">
+		INSERT INTO Review (review_id, user_id, route_id, regDate, rating)
+		VALUES (#{reviewId}, #{userId}, #{routeId}, #{regDate}, #{rating})
+	</insert>
+	
+	<!-- 사실 모든 리뷰 보기는 리뷰보기를 가장한 완주한 경로 -->
+	<select id="selectAllReviews" parameterType="String" resultType="Review">
+		SELECT *
+		FROM Review
+		WHERE user_id=#{userId};
+	</select>
+	
+	<select id="selectReviewById" parameterType="int" resultType="Review">
+		SELECT *
+		FROM Review
+		WHERE review_id=#{reviewId};
+	</select>
+	
+	
+	<delete id="deleteReview" parameterType="int">
+		DELETE 
+		FROM Review
+		WHERE review_id=#{reviewId};
+	</delete>
+  
+  </mapper>
