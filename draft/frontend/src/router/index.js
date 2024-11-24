@@ -6,6 +6,7 @@ import MainContent from '@/views/MainContent.vue';
 import RouteForm from '@/views/RouteForm.vue';
 import UserProfile from '@/views/MypageContent.vue';
 import FormResult from '@/components/FormResult.vue';
+import RoutePage from '@/components/RoutePage.vue';
 import { KakaoMap } from 'vue3-kakao-maps';
 
 const router = createRouter({
@@ -13,13 +14,18 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: HomeContent,
+      name: 'HomeContent',
       component: HomeContent,
     },
     {
       path: '/login',
-      name: Login,
+      name: "Login",
       component: Login,
+    },
+    {
+      path:'/routes',
+      name: "Route",
+      component :RoutePage,
     },
     {
       path: '/signup',
@@ -37,7 +43,7 @@ const router = createRouter({
       component: RouteForm,
     },
     {
-      path: '/mypage/:id',
+      path: '/mypage',
       name: UserProfile,
       component: UserProfile,
     },
@@ -50,6 +56,7 @@ const router = createRouter({
           name: 'kakao',
           component: KakaoMap,
         },
+        
       ],
     
     },

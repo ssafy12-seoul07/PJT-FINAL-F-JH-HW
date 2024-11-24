@@ -11,16 +11,19 @@
 		
 	</insert>
 	
-	<select id="selectAllBookmarks" parameterType="String" resultType="Bookmark">
-		SELECT *
-		FROM Bookmark
-		WHERE user_id=#{userId};
+	<select id="selectAllBookmarks" parameterType="String" resultType="Location">
+   		 SELECT b.route_id, l.A_name,l.B_name,l.C_name
+   		 FROM Bookmark b
+    	 JOIN Location l
+    	 ON b.route_id = l.route_id
+    	 WHERE b.user_id = #{userId};
 	</select>
 	
-	<delete id="deleteBookmark" parameterType="int">
+	<delete id="deleteBookmark" parameterType="map" >
 		DELETE 
 		FROM Bookmark
-		WHERE bookmark_id=#{bookmarkId};
+		WHERE user_id=#{userId}
+		AND route_id=#{routeId};
 	</delete>
 	
 	

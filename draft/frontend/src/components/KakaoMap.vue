@@ -1,60 +1,62 @@
 
-<template>
-  여러개를 .
-  <KakaoMap 
-  :lat="centerLat" 
-  :lng="centerLng" 
-  :level="6" @create="onMapCreate">
-    <!-- 마커 3개 반복 생성-->
-    <!-- 오버레이 3개 반복 생성 -->
-  
-    <KakaoMapCustomOverlay
-    v-for="(coordinate, index) in locationList"
-    :key="'overlay-'+ index"
-    :lat="coordinate.lat"
-    :lng="coordinate.lng"
-      :content="coordinate.content"
-      :yAnchor="2"
+  <template>
+    <KakaoMap class = 'kakaomap'
+    :lat="centerLat" 
+    :lng="centerLng" 
+    :width=1000
+    :height:=520
+    :level="6" 
     >
-    <button class ='overlay-content'
-      v-for="(location, index) in locationList"
-          :key="'locationName'+index"
-          >
-          {{ location.locationName }}
-     </button>
-    </KakaoMapCustomOverlay>
+    
+    <!-- 이제 배열을 만들어서 localist에서 좌표 6개 가져와서 저장 -->
+    <KakaoMapCustomOverlay
+    
+      v-for="(spot, index) in coordinateList"
+      :key="'overlay-'+ index"
+      :lat="spot.lat"
+      :lng="spot.lng"
+        :content="spot.name"
+        :yAnchor="2"
+      >
+      <button class ='overlay-content'>
+            {{ spot.name }}
+      </button>
+      </KakaoMapCustomOverlay>
 
-    <KakaoMapMarkerPolyline 
-    :markerList="locationList"
-    strokeWeight="15"
-    strokeColor="#FFAE00"
-    :strokeOpacity="0.7"
-    :endArrow="true" 
-    image="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"
-          
-  
-    />
-    <KakaoMapMarker
-      v-for="(coordinate, index) in locationList"
+      <KakaoMapMarkerPolyline 
+      :markerList="realCoordinateList"
+      strokeWeight="15"
+      strokeColor="#FFAE00"
+      :strokeOpacity="0.7"
+      :endArrow="true" 
+            
+    
+      />
+      <KakaoMapMarker
+      v-for="(coordinate, index) in coordinateList"
       :key="'marker-'+index"
       :lat="coordinate.lat"
-      :lng="coordinate.lng"
-      :image="{
-        imageSrc:'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
-        imageWidth:30,
-        imageHeight:40,
-        imageOption:{},
-        zIndex: 5,
-      }"
-    />
+        :lng="coordinate.lng"
+        :image="{
+          imageSrc:'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
+          imageWidth:30,
+          imageHeight:40,
+          imageOption:{},
+          zIndex: 5,
+        }"
+      />
+      <!-- 카테고리 UI -->
+      <div class="category-container">
 
-  </KakaoMap>
-  
-</template>
+        <button class="category-btn" @click="changeStart">시작지점바꾸기</button>
+      </div>
+    </KakaoMap>
+    
+    
+  </template>
 
 <script>
 import { useFormStore } from "@/stores/form";
-import { useMapStore } from "@/stores/map";
 import { onMounted, ref } from "vue";
 
 import { 
@@ -75,44 +77,77 @@ export default {
       },
 
   setup(){
-      const mapStore = useMapStore();
-
-      // 초기값 설정
-      const locationList = ref([]);
+      
+        // 초기값 설정
+      const locationInfo = ref({});
       const centerLat = ref(null);
       const centerLng = ref(null);
       const routeId = ref(null);
       const formStore = useFormStore();
-      
+      const coordinateList = ref([]);
+      const locationList = ref([]);
+      const realCoordinateList = ref([]);
+
       const fetchData = async()=>{
         try{
-    console.log(formStore.routeId)
-          await mapStore.getLocationList(formStore.routeId);
-          locationList.value = mapStore.locationList;
-          console.log("Fetched location data:", locationList.value);
-      
-      //center값 설정
-      if(locationList.value.length>0){
-        console.log(locationList.value)
-        centerLat.value=locationList.value[1].lat;
-        centerLng.value=locationList.value[1].lng;
+          // console.log(formStore.routeId)
+          locationInfo.value = formStore.locationInfo
+          console.log("Fetched location data:", locationInfo.value);
+          
+          //center값 설정
+      if(locationInfo.value){
+        centerLat.value=locationInfo.value.centerLatitude;
+        centerLng.value=locationInfo.value.centerLongitude;
+
+        coordinateList.value = [
+          {
+            name :locationInfo.value.aname,
+            lat:locationInfo.value.alatitude,
+            lng :locationInfo.value.alongitude,
+          },
+          {
+            
+            name :locationInfo.value.bname,
+            lat :locationInfo.value.centerLatitude,
+            lng :locationInfo.value.centerLongitude,
+          },
+          {
+            
+            name :locationInfo.value.cname,
+            lat :locationInfo.value.blatitude,
+            lng :locationInfo.value.blongitude,
+          }
+        ]
+        realCoordinateList.value=coordinateList.value
       } else {
         console.log("route not reloaded");
+        console.log("왜안될까"+coordinateList.value)
       } 
     }catch (error){
-        console.error("에러", error.message);
-      }
-    };
-      // API 호출 후 데이터 처리 
-      onMounted(async () => {
-        await formStore.searchRouteId();
-        await fetchData();
-      });
+      console.error("에러", error.message);
+    }
+  };
+  // //API 호출 후 데이터 처리 
+  onMounted(async () => {
+    try{
+      // fetchData 호출로 locationInfo 처리
+      await fetchData(); // fetchData에서 coordinateList와 centerLat/centerLng 설정
+    } catch (error) {
+      console.error("Error during initialization:", error.message);
+    }
+    // await formStore.searchRouteId();
+  });
+  
+  function changeStart () {
+    realCoordinateList.value = [...realCoordinateList.value].reverse();
+    console.log(JSON.stringify(realCoordinateList.value))
+  }
 
-    return {
-      locationList, centerLat, centerLng, fetchData
-    };
-  },//setup 
+  return {
+    locationList, centerLat, centerLng, fetchData, locationInfo, coordinateList, realCoordinateList, changeStart
+  };
+
+},//setup 
 
 };//export
 
@@ -120,6 +155,13 @@ export default {
 
 <style scoped>
 /* 오버레이 스타일 */
+.kakaomap{
+  position:absolute;
+  top:5%;
+  left: 6%;
+  transform: translateZ(-50%); /* 수직 중심 정렬 */
+  z-index: 10; /* 모달보다 높은 레이어 지정 */
+}
 ::v-deep(.overlay-content)
  {
   position: absolute;
@@ -135,5 +177,32 @@ export default {
   /* z-index: 100; 마커보다 위에 표시 */
 }
 
+/* 카테고리 UI */
+.category-container {
+  position: absolute; /* 지도 위 고정 */
+  top: 10px; /* 지도 상단에서 10px */
+  left: 10px; /* 지도 왼쪽에서 10px */
+  background: rgba(255, 255, 255, 0.9); /* 반투명 배경 */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 쟈랴0px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 1000; /* 지도 위에 표시되도록 설정 */
+}
+
+.category-btn {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.category-btn:hover {
+  background-color: #ddd;
+}
 
 </style>

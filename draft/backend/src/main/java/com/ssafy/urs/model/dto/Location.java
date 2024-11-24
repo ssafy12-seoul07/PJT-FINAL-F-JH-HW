@@ -3,29 +3,34 @@ package com.ssafy.urs.model.dto;
 public class Location {
 	private int routeId;
 	private int locationId;
-	private String locationName;
-	private int ALatitude;
-	private int ALongitude;
-	private int centerLatitude;
-	private int centerLongitude;
-	private int BLatitude;
-	private int BLongitude;
+	private String AName;
+	private double ALatitude;
+	private double ALongitude;
+	private String CName;
+	private double centerLatitude;
+	private double centerLongitude;
+	private String BName;
+	private double BLatitude;
+	private double BLongitude;
 	private String imgURL;
 	
 	public Location() {}
 
-	public Location(int routeId, int locationId, String locationName, int aLatitude, int aLongitude, int centerLatitude,
-			int centerLongitude, int bLatitude, int bLongitude, String imgURL) {
+	public Location(int routeId, int locationId, String aName, double aLatitude, double aLongitude, String cName,
+			double centerLatitude, double centerLongitude, String bName, double bLatitude, double bLongitude,
+			String imgURL) {
 		super();
 		this.routeId = routeId;
 		this.locationId = locationId;
-		this.locationName = locationName;
-		ALatitude = aLatitude;
-		ALongitude = aLongitude;
+		this.AName = aName;
+		this.ALatitude = aLatitude;
+		this.ALongitude = aLongitude;
+		this.CName = cName;
 		this.centerLatitude = centerLatitude;
 		this.centerLongitude = centerLongitude;
-		BLatitude = bLatitude;
-		BLongitude = bLongitude;
+		this.BName = bName;
+		this.BLatitude = bLatitude;
+		this.BLongitude = bLongitude;
 		this.imgURL = imgURL;
 	}
 
@@ -45,59 +50,75 @@ public class Location {
 		this.locationId = locationId;
 	}
 
-	public String getLocationName() {
-		return locationName;
+	public String getAName() {
+		return AName;
 	}
 
-	public void setLocationName(String locationName) {
-		this.locationName = locationName;
+	public void setAName(String aName) {
+		AName = aName;
 	}
 
-	public int getALatitude() {
+	public double getALatitude() {
 		return ALatitude;
 	}
 
-	public void setALatitude(int aLatitude) {
+	public void setALatitude(double aLatitude) {
 		ALatitude = aLatitude;
 	}
 
-	public int getALongitude() {
+	public double getALongitude() {
 		return ALongitude;
 	}
 
-	public void setALongitude(int aLongitude) {
+	public void setALongitude(double aLongitude) {
 		ALongitude = aLongitude;
 	}
 
-	public int getCenterLatitude() {
+	public String getCName() {
+		return CName;
+	}
+
+	public void setCName(String cName) {
+		CName = cName;
+	}
+
+	public double getCenterLatitude() {
 		return centerLatitude;
 	}
 
-	public void setCenterLatitude(int centerLatitude) {
+	public void setCenterLatitude(double centerLatitude) {
 		this.centerLatitude = centerLatitude;
 	}
 
-	public int getCenterLongitude() {
+	public double getCenterLongitude() {
 		return centerLongitude;
 	}
 
-	public void setCenterLongitude(int centerLongitude) {
+	public void setCenterLongitude(double centerLongitude) {
 		this.centerLongitude = centerLongitude;
 	}
 
-	public int getBLatitude() {
+	public String getBName() {
+		return BName;
+	}
+
+	public void setBName(String bName) {
+		BName = bName;
+	}
+
+	public double getBLatitude() {
 		return BLatitude;
 	}
 
-	public void setBLatitude(int bLatitude) {
+	public void setBLatitude(double bLatitude) {
 		BLatitude = bLatitude;
 	}
 
-	public int getBLongitude() {
+	public double getBLongitude() {
 		return BLongitude;
 	}
 
-	public void setBLongitude(int bLongitude) {
+	public void setBLongitude(double bLongitude) {
 		BLongitude = bLongitude;
 	}
 
@@ -111,11 +132,14 @@ public class Location {
 
 	@Override
 	public String toString() {
-		return "Location [routeId=" + routeId + ", locationId=" + locationId + ", locationName=" + locationName
-				+ ", ALatitude=" + ALatitude + ", ALongitude=" + ALongitude + ", centerLatitude=" + centerLatitude
-				+ ", centerLongitude=" + centerLongitude + ", BLatitude=" + BLatitude + ", BLongitude=" + BLongitude
-				+ ", imgURL=" + imgURL + "]";
-	};
+		return "Location [routeId=" + routeId + ", locationId=" + locationId + ", AName=" + AName + ", ALatitude="
+				+ ALatitude + ", ALongitude=" + ALongitude + ", CName=" + CName + ", centerLatitude=" + centerLatitude
+				+ ", centerLongitude=" + centerLongitude + ", BName=" + BName + ", BLatitude=" + BLatitude
+				+ ", BLongitude=" + BLongitude + ", imgURL=" + imgURL + "]";
+	}
 	
 	
+	
+	
+
 }

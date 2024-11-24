@@ -1,22 +1,26 @@
 <template>
   <div class="main-content">
-    <div class="map-container">
-     <KakaoMap :location-data="locationData"/>
-    </div>
-
+    
     <div class="modal-content">
-      <div>
-        <h2>Selected Route</h2>
-        <p>카카오api를 이용한 대략적인 경로 보여주기(핀 이용)</p>
-        <p>찜 버튼</p>
-        <p>경로 재탐색</p>
-        <p></p>
-        <!-- <p>{{ routeInfo }}</p> -->
+      <div class="map-container">
+       <KakaoMap 
+       v-if="store.locationInfo && Object.keys(store.locationInfo).length > 0"
+  :location-data="store.locationInfo"/>
       </div>
     </div>
+    <div class="modal-content2">
+      <div>
+        <span>selected Route</span>
+        <button class = 'button-content' @click="openURL()">
+           산책 시작
+        </button>
+                <!-- <p>{{ routeInfo }}</p> -->
+      </div>
+    </div>
+    
   </div>
   
-  <RouterView/>
+  <!-- <RouterView/> -->
 </template>
 
 <script setup>
@@ -30,34 +34,32 @@ const store = useFormStore();
 // const routeId = ref(null);
 const locationData = ref([]);
 const routeId = ref(null);
+const routeURL = ref('');
 // const locationList = ref([]);
 
-console.log(store.selectedDistrict);
-console.log(store.selectedStep1);
-console.log(store.selectedStep2);
+// console.log(store.selectedDistrict);
+// console.log(store.selectedStep1);
+// console.log(store.selectedStep2);
 
-//백 요청해서 저장할거다
+function openURL() {
+  // 카카오맵뷰에서 realCoordinate 에서 좌표 얻어오면됨
+    window.open(); // 전달된 URL로 새 탭 열기
+}
 
-
-const fetchRouteAndLocation = async() => {
-  try{
-    const { selectedDistrict, selectedStep1, selectedStep2} = store;
+onMounted(async () => {
   
-    //getRouteByUser호출
-    const routeResponse = await axios.get(
-    `/urs/route/${selectedDistrict}/${selectedStep1}/${selectedStep2}`
-  );
-  routeId.value = routeResponse.data;
+  try {
+    await store.searchRouteId(); // Route ID와 Location 데이터 로드
+    console.log("Route ID from store:", store.routeId);
 
-    //getLocationById호출
-    const locationResponse = await axios.get(`/urs/location/${routeId.value}`);
-    locationData.value = locationResponse.data;
-  } catch (error){
-    console.log("whyyy")
+    // // Location 데이터를 KakaoMap에 전달
+    // locationData.value = store.locationInfo;
+    // console.log("Location Data for KakaoMap:", locationData.value);
+  } catch (error) {
+    console.error("Error during map data initialization:", error.message);
   }
-};
-
-onMounted(fetchRouteAndLocation);
+}
+);
 
 </script>
 
@@ -74,7 +76,7 @@ onMounted(fetchRouteAndLocation);
 /* 모달 */
 .modal-content {
   position: fixed;
-  top: 50%;
+  top: 52%;
   left: 3%;
   transform: translateY(-50%);
   background: rgba(33, 33, 33, 0.95);
@@ -82,11 +84,51 @@ onMounted(fetchRouteAndLocation);
   border-radius: 1rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
   width: 100%;
-  height: 550px;
-  width: 1300px;
+  height: 530px;
+  width: 1100px;
   padding: 20px;
-  text-align: center;
+  text-align:left;
   animation: fadeIn 0.3s ease-out;
   color: rgba(255, 255, 255, 0.85);
+}
+.modal-content2 {
+  position: fixed;
+  top: 52%;
+  right: 3%;
+  transform: translateY(-50%);
+  background: rgba(33, 33, 33, 0.95);
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 530px;
+  width: 300px;
+  padding: 20px;
+  text-align:left;
+  animation: fadeIn 0.3s ease-out;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+
+.button-content {
+  min-width: 200px;
+  height: 80px;
+  font-size: 20px;
+  font-weight: bold;
+  border: 2px solid #e2dfd8;
+  border-radius: 12px;
+  background-color: #ffd000;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-content:hover {
+  background-color: #ffb703;
+  color: #fff;
+  transform: scale(1.05);
 }
 </style>

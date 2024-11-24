@@ -5,20 +5,20 @@ public class Route {
 	private String district;
 	private String theme;
 	private int duration;
-	private String routeAURL;
-	private String routeBURL;
+	private int calorie;
+	private boolean isBookmarked;
 	
 	public Route() {};
 
-	public Route(int routeId, String district, String theme, int duration, String routeAURL,
-			String routeBURL) {
+	public Route(int routeId, String district, String theme, int duration, int calorie,
+			boolean isBookmarked) {
 		super();
 		this.routeId = routeId;
 		this.district = district;
 		this.theme = theme;
 		this.duration = duration;
-		this.routeAURL = routeAURL;
-		this.routeBURL = routeBURL;
+		this.calorie=calorie;
+		this.isBookmarked=isBookmarked;
 	}
 
 	public int getRouteId() {
@@ -41,7 +41,7 @@ public class Route {
 		return theme;
 	}
 
-	public void setThemeName(String theme) {
+	public void setTheme(String theme) {
 		this.theme = theme;
 	}
 
@@ -53,27 +53,31 @@ public class Route {
 		this.duration = duration;
 	}
 
-	public String getRouteAURL() {
-		return routeAURL;
+
+	public boolean isBookmarked() {
+		return isBookmarked;
 	}
 
-	public void setRouteAURL(String routeAURL) {
-		this.routeAURL = routeAURL;
+	public void setBookmarked(boolean isBookmarked) {
+		this.isBookmarked = isBookmarked;
 	}
 
-	public String getRouteBURL() {
-		return routeBURL;
+	
+	public int getCalorie() {
+		return calorie;
 	}
 
-	public void setRouteBURL(String routeBURL) {
-		this.routeBURL = routeBURL;
+	public void setCalorie(int calorie) {
+		this.calorie = calorie;
 	}
 
 	@Override
 	public String toString() {
-		return "Route [routeId=" + routeId + ", district=" + district + ", theme=" + theme
-				+ ", duration=" + duration + ", routeAURL=" + routeAURL + ", routeBURL=" + routeBURL + "]";
+		return "Route [routeId=" + routeId + ", district=" + district + ", theme=" + theme + ", duration=" + duration
+				+ ", calorie=" + calorie + ", isBookmarked=" + isBookmarked + "]";
 	}
+
+
 
 	
 }

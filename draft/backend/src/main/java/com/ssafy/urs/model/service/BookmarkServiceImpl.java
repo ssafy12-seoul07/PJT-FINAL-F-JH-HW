@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.urs.model.dao.BookmarkDao;
 import com.ssafy.urs.model.dto.Bookmark;
+import com.ssafy.urs.model.dto.Location;
 import com.ssafy.urs.model.dto.Route;
 
 @Service
@@ -23,13 +24,13 @@ public class BookmarkServiceImpl implements BookmarkService {
 	}
 
 	@Override
-	public List<Bookmark> getAllBookmarks(String userId) {
+	public List<Location> getAllBookmarks(String userId) {
 		return bd.selectAllBookmarks(userId);
 	}
 
 	@Override
-	public boolean deleteBookmark(int bookmarkId) {
-		int result=bd.deleteBookmark(bookmarkId);
+	public boolean deleteBookmark(String userId, int routeId) {
+		int result=bd.deleteBookmark(userId, routeId);
 		return result>0;
 	}
 	

@@ -39,8 +39,7 @@ VALUES
     (4, 'jung', 'alone', 25, 53, 'https://example.com/route4'),
     (5, 'jung', 'demure', 25, 48, 'https://example.com/route5');
     
-INSERT into `route`(`route_id`, `district`, `theme`, `duration`, `calorie`, `routeURL`) 
-VALUES(7, '중구', 'alone', 10, 70, 'https://example.com/route6');
+
     
     INSERT INTO `location` (
     `route_id`, `A_latitude`, `A_longitude`, 

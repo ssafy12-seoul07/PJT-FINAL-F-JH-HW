@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ssafy.urs.model.dto.Bookmark;
+import com.ssafy.urs.model.dto.Location;
 import com.ssafy.urs.model.dto.Route;
 
 @Mapper
@@ -14,9 +15,9 @@ public interface BookmarkDao {
 	//북마크 추가
 	int insertBookmark(Bookmark bookmark);
 	//북마크 전체읽기
-	List<Bookmark> selectAllBookmarks(String userId);
+	List<Location> selectAllBookmarks(String userId);
 	// 북마크 삭제
-	int deleteBookmark(int bookmarkId);
+	int deleteBookmark(String userId, int routeId);
 	
 	//completed
 	//장소유형이 매개변수..라서 이거는 mapper 쓸 때 한번 더 보자

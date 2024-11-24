@@ -47,8 +47,8 @@ public class RouteRestController {
 	@GetMapping("/{district}/{theme}/{duration}")
 	public ResponseEntity<Integer> getRoutebyUser(
 			@PathVariable String district,
-			@PathVariable(value= "theme") String theme,
-			@PathVariable(value = "duration") Integer duration){
+			@PathVariable String theme,
+			@PathVariable Integer duration){
 		Route route = rs.getRouteByParam(district, theme, duration);
 		return new ResponseEntity<Integer>(route.getRouteId(), HttpStatus.OK);
 	}
