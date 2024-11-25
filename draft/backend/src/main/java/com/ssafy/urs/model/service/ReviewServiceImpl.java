@@ -2,8 +2,10 @@ package com.ssafy.urs.model.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.urs.model.dao.BookmarkDao;
 import com.ssafy.urs.model.dao.ReviewDao;
 import com.ssafy.urs.model.dto.Review;
 
@@ -14,6 +16,7 @@ public class ReviewServiceImpl implements ReviewService{
 	public ReviewServiceImpl(ReviewDao vd) {
 		this.vd=vd;
 	}
+	
 
 	@Override
 	public boolean addReview(Review review) {
@@ -34,6 +37,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public boolean deleteReview(int reviewId) {
 		int result = vd.deleteReview(reviewId);
+		
 		return result>0;
 	}
 	

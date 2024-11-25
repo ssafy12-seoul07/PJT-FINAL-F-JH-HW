@@ -4,18 +4,16 @@
   box-sizing: border-box;
 }
 
-html {
-  position: relative;
-  background: url('@/assets/background/background.png') no-repeat center center;
+body {
+  background: url('@/assets/background/background.png') no-repeat center;
   background-size: cover;
-  overflow: hidden;
 }
 
-html,
+/* html,
 body {
   min-width: 600px;
   min-height: 700px;
   overflow: hidden;
   margin: 0;
   padding: 0;
-}
+} */

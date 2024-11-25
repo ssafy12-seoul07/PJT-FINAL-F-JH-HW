@@ -19,12 +19,6 @@ public interface BookmarkDao {
 	// 북마크 삭제
 	int deleteBookmark(String userId, int routeId);
 	
-	//completed
-	//장소유형이 매개변수..라서 이거는 mapper 쓸 때 한번 더 보자
-    // boolean updateLocationCheck(boolean isChecked, int routeId, String userId, String locationType);
-	// 근데 이거는 프론트의 영역인것같아.."?
-		//리뷰로 가져가도되겠다!
-	
 	
     
 //	

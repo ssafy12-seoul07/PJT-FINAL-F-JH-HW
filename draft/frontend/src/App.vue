@@ -33,7 +33,7 @@ const currentHeader = computed(() => {
 
 <style scoped>
 .content-container {
-  position: relative;
+  position:relative;
   z-index: 1;
 }
 

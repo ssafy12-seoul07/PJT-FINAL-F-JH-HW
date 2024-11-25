@@ -7,11 +7,12 @@ public class Route {
 	private int duration;
 	private int calorie;
 	private boolean isBookmarked;
+	private String contentName;
 	
 	public Route() {};
 
 	public Route(int routeId, String district, String theme, int duration, int calorie,
-			boolean isBookmarked) {
+			boolean isBookmarked, String contentName) {
 		super();
 		this.routeId = routeId;
 		this.district = district;
@@ -19,6 +20,7 @@ public class Route {
 		this.duration = duration;
 		this.calorie=calorie;
 		this.isBookmarked=isBookmarked;
+		this.contentName=contentName;
 	}
 
 	public int getRouteId() {
@@ -71,12 +73,21 @@ public class Route {
 		this.calorie = calorie;
 	}
 
+	public String getContentName() {
+		return contentName;
+	}
+
+	public void setContentName(String contentName) {
+		this.contentName = contentName;
+	}
+
 	@Override
 	public String toString() {
 		return "Route [routeId=" + routeId + ", district=" + district + ", theme=" + theme + ", duration=" + duration
-				+ ", calorie=" + calorie + ", isBookmarked=" + isBookmarked + "]";
+				+ ", calorie=" + calorie + ", isBookmarked=" + isBookmarked + ", contentName=" + contentName + "]";
 	}
 
+	
 
 
 	

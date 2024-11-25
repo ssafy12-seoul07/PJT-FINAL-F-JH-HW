@@ -1,5 +1,7 @@
 package com.ssafy.urs.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,5 +27,12 @@ public class LocationRestController {
 		Location location = ls.getLocationByRouteId(routeId);
 		System.out.println(location.toString());
 		return new ResponseEntity<Location>(location, HttpStatus.OK);
+	}
+	
+	@GetMapping("/all")
+	public ResponseEntity<List<Location>> showAll(){
+		List<Location> list = ls.getAllLocation();
+		return new ResponseEntity<>(list,HttpStatus.OK);
+		
 	}
 }

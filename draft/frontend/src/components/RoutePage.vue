@@ -2,16 +2,25 @@
           
 <div class="container">
 <div class="row">
-  <div class="card" style="width: 18rem;"
+  <div class="card" 
+    
     v-for="(route, index) in routeList"
     :key="route.routeId"
     >
-  <img src="..." class="card-img-top" alt="...">
+  <img 
+  :src="`http://localhost:8080/images/${route.routeId}.jpg`" 
+  :als="`Route Image for ${route.routeId} `"
+  class="card-img-top">
   <div class="card-body">
-    <h5 class="card-title">{{ route.district }}</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h5 class="card-title">🎞{{ route.contentName }}</h5>
+    <p class="card-text">🧩{{ locationStore.locationList[index].aname }} <br> 
+      🔁{{ locationStore.locationList[index].cname  }}<br>
+      🧩{{ locationStore.locationList[index].bname  }}<br>
+      🌱 {{ route.calorie}}kcal
+      </p>
     <div class="d-flex gap-2"> 
-      <a href="#" class="btn btn-sm btn-primary" @click="goFormResult(route.routeId)">Go walk!</a>
+      <a href="#" class="btn btn-sm btn-primary" 
+      @click="goFormResult(route.routeId)">Go walk!</a>
       <a href="#" class="btn btn-sm btn-primary"  
       :class="route.isBookmarked ? 'btn-danger' : 'btn-primary'"
       :disabled="route.isBookmarked" 
@@ -32,6 +41,7 @@
     import { useFormStore } from '@/stores/form';
     import { useRouteStore } from '@/stores/route';
     import { useAuthStore } from '@/stores/auth';
+    import { useLocationStore } from '@/stores/location';
     import { onMounted, ref, defineEmits } from 'vue';
     import axios from 'axios';
     // Bootstrap의 모든 JavaScript 유틸리티 가져오기
@@ -44,6 +54,7 @@
     const router = useRouter();
     const routeList = ref([]);
     const formStore = useFormStore();
+    const locationStore = useLocationStore();
 
     function goFormResult(routeId){
       formStore.setRouteId(routeId);
@@ -91,35 +102,50 @@
       
     onMounted(() => {
       const userId = AuthStore.userId; // AuthStore에서 userId 가져오기
+      locationStore.getLocationList();
+    // 전체 Route 리스트 가져오기
+    axios
+      .get("http://localhost:8080/urs/route/all")
+      .then((response) => {
+        console.log("Routes fetched:", response.data);
+        routeList.value = response.data; // 서버에서 가져온 Route 데이터를 routeList에 저장
 
-// 전체 Route 리스트 가져오기
-axios
-  .get("http://localhost:8080/urs/route/all")
-  .then((response) => {
-    console.log("Routes fetched:", response.data);
-    routeList.value = response.data; // 서버에서 가져온 Route 데이터를 routeList에 저장
-
-    // AuthStore의 bookmarkList와 비교하여 각 Route의 isBookmarked 상태 설정
-    const bookmarkList = AuthStore.bookmarkList;
-    routeList.value.forEach((route) => {
-      route.isBookmarked = bookmarkList.some(
-        (bookmark) => bookmark.routeId === route.routeId
-      );
-    });
-  })
-  .catch((error) => console.error("Failed to fetch routes:", error));
-})
+        // AuthStore의 bookmarkList와 비교하여 각 Route의 isBookmarked 상태 설정
+        const bookmarkList = AuthStore.bookmarkList;
+        routeList.value.forEach((route) => {
+          route.isBookmarked = bookmarkList.some(
+            (bookmark) => bookmark.routeId === route.routeId
+          );
+        });
+      })
+      .catch((error) => console.error("Failed to fetch routes:", error));
+    })
 
 </script>
 
 <style  scoped>
 .container {
   margin-top: 130px; /* 컨테이너의 위쪽 여백 설정 */
+  max-height: 100vh;
   overflow-y: auto;
 }
 
 .row {
+  display: flex;
   justify-content: center; /* Flexbox로 중앙 정렬 */
+  gap: 10px;
+  padding-top:10px;
+}
+
+.card {
+  width: 18rem;
+  padding-top: 10px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
 
 

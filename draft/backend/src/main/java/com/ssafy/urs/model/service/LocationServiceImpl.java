@@ -1,5 +1,7 @@
 package com.ssafy.urs.model.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.ssafy.urs.model.dao.LocationDao;
@@ -18,6 +20,11 @@ public class LocationServiceImpl implements LocationService {
 		return ld.selectByRouteId(routeId);
 	}
 
+	@Override
+	public List<Location> getAllLocation() {
+		return ld.selectAllLocation();
+	}
 
+	
 	
 }

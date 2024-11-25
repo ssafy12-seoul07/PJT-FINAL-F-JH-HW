@@ -11,9 +11,8 @@
 	</insert>
 	
 	<delete id="deleteUser" parameterType="String">
-		DELETE 
-		FROM User
-		WHERE user_id=#{userId};
+		
+		DELETE FROM user WHERE user_id=#{userId};
 	</delete>
 	
 	<select id="selectUserById" parameterType="User" resultType="User">

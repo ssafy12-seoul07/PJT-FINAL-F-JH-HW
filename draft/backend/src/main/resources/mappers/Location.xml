@@ -10,4 +10,9 @@
   	WHERE route_id=#{routeId};
   
   </select>
+  
+  <select id="selectAllLocation" resultType="Location">
+  SELECT *
+	FROM Location
+  </select>
   </mapper>

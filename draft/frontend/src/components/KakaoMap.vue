@@ -107,13 +107,13 @@ export default {
           },
           {
             
-            name :locationInfo.value.bname,
+            name :locationInfo.value.cname,
             lat :locationInfo.value.centerLatitude,
             lng :locationInfo.value.centerLongitude,
           },
           {
             
-            name :locationInfo.value.cname,
+            name :locationInfo.value.bname,
             lat :locationInfo.value.blatitude,
             lng :locationInfo.value.blongitude,
           }
@@ -165,16 +165,15 @@ export default {
 ::v-deep(.overlay-content)
  {
   position: absolute;
-  transform: translate(-50%, -200%); /* 마커 위 중앙 정렬 */
+  transform: translate(-50%, -250%); /* 마커 위 중앙 정렬 */
   border-radius: 6px;
   border: 1px solid #ccc;
   border-bottom: 2px solid #ddd;
   background: white;
-  padding: 10px 15px;
-  font-size: 14px;
+  padding: 5px 10px;
+  font-size: 12px;
   font-weight: bold;
   box-shadow: 0px 1px 2px #888;
-  /* z-index: 100; 마커보다 위에 표시 */
 }
 
 /* 카테고리 UI */
