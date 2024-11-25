@@ -135,17 +135,19 @@
   justify-content: center; /* Flexbox로 중앙 정렬 */
   gap: 10px;
   padding-top:10px;
+  justify-content: start;
 }
 
 .card {
   width: 18rem;
-  padding-top: 10px;
+  padding-top: 15px;
 }
 
 .card-body {
   display: flex;
   flex-direction: column;
   justify-content: end;
+  padding:1rem;
 }
 
 

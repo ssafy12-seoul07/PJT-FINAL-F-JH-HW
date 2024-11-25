@@ -5,21 +5,23 @@
       <div class="map-container">
        <KakaoMap 
        v-if="store.locationInfo && Object.keys(store.locationInfo).length > 0"
-  :location-data="store.locationInfo"/>
+      :location-data="store.locationInfo"/>
       </div>
     </div>
     <div class="modal-content2">
       <div>
-        <span>selected Route</span>
+        <span>selected Route</span> <br>
+        <img 
+        :src="`http://localhost:8080/posters/${store.routeId}.jpg`" 
+        :als="`Route Image for ${store.routeId} `"
+        :style="{ width: '200px', height: '280px',  }"/><br>
+        <!-- <p>{{ routeInfo }}</p> -->
         <button class = 'button-content' @click="openURL()">
-           산책 시작
+          산책 시작
         </button>
-                <!-- <p>{{ routeInfo }}</p> -->
-      </div>
-    </div>
-    
+      </div>  
   </div>
-  
+</div>
   <!-- <RouterView/> -->
 </template>
 
@@ -95,6 +97,8 @@ onMounted(async () => {
   position: fixed;
   top: 52%;
   right: 3%;
+  justify-content: center;
+  display : flex;
   transform: translateY(-50%);
   background: rgba(33, 33, 33, 0.95);
   border: 1px solid rgba(128, 128, 128, 0.4);
@@ -103,14 +107,17 @@ onMounted(async () => {
   width: 100%;
   height: 530px;
   width: 300px;
-  padding: 20px;
-  text-align:left;
+  /* padding: 20px; */
+  text-align:center;
+  text-align: bottom;
   animation: fadeIn 0.3s ease-out;
   color: rgba(255, 255, 255, 0.85);
+  padding: 1rem;
 }
 
 
 .button-content {
+  position:relative;
   min-width: 200px;
   height: 80px;
   font-size: 20px;
@@ -121,7 +128,6 @@ onMounted(async () => {
   color: #000000;
   cursor: pointer;
   transition: all 0.3s ease;
-  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -131,4 +137,5 @@ onMounted(async () => {
   color: #fff;
   transform: scale(1.05);
 }
+
 </style>

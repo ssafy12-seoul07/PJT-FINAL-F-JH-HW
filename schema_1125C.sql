@@ -61,7 +61,7 @@ CREATE TABLE `Review` (
 
 SELECT * FROM user;
 select * from location;
-
+select * from route;
 -- 더미데이터 삽입
 INSERT INTO `User` (`user_id`, `password`, `name`, `phone`) VALUES
 ('hwlee333', 'password123', 'Alice', '01012345678');
@@ -102,17 +102,18 @@ VALUES
 
 
 
-INSERT INTO `Review` (`review_id`, `user_id`, `
-route_id`, `reg_date`, `rating`) VALUES
+INSERT INTO `Review` (`review_id`, `user_id`, `route_id`, `reg_date`, `rating`) VALUES
 (1, 'hwlee333', 1, '2024-11-01', 4);
 
 
-select * from user;
-select * from route;
-select * from bookmark;
+select * from review;
+select * from location;
+select * from bookmark	;
 
 INSERT INTO `Bookmark` (`bookmark_id`,`user_id`, `route_id`)
 VALUES (1,"hwlee333",7);
+
+truncate table `Bookmark`;
 
 
 

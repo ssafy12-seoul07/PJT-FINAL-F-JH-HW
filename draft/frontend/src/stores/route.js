@@ -10,7 +10,7 @@ export const useRouteStore = defineStore("routeStore", ()=> {
     const fetchRoutes = async () => { // 데이터를 가져오는 함수
         try {
           const response = await axios.get(`${REST_API_URL}route/all`);
-          routeList.value = response.data.results; // 상태 업데이트
+          routeList.value = response.data; // 상태 업데이트
           console.log("API Response:", response.data);
         } catch (error) {
           console.error("Error fetching route list:", error.message);

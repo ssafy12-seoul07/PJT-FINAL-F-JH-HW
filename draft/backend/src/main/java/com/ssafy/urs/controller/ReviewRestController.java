@@ -39,12 +39,12 @@ public class ReviewRestController {
 	}
 	//리뷰보기(완주한경로보기)
 	@GetMapping("/all/{userId}")
-	public <T> ResponseEntity<T> showAll(@PathVariable("userId") String userId){
+	public ResponseEntity<?> showAll(@PathVariable("userId") String userId){
 		List<Review> list = vs.getAllReviews(userId);
 		if(list != null) {
-				return (ResponseEntity<T>) new ResponseEntity<List<Review>>(list, HttpStatus.OK);
+				return  new ResponseEntity<List<Review>>(list, HttpStatus.OK);
 		} else {
-			return (ResponseEntity<T>) new ResponseEntity<String>("no completed walk yet", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("no completed walk yet", HttpStatus.NOT_FOUND);
 		}
 		}
 	//리뷰보기(specific리뷰보기)
