@@ -14,7 +14,10 @@
       <a href="#" class="btn btn-sm btn-primary" @click="goFormResult(route.routeId)">Go walk!</a>
       <a href="#" class="btn btn-sm btn-primary"  
       :class="route.isBookmarked ? 'btn-danger' : 'btn-primary'"
-      @click="toggleBookmark(route)">{{ route.isBookmarked ? "Bookmarked" : "Bookmark" }}</a>
+      :disabled="route.isBookmarked" 
+      @click="toggleBookmark(route)">
+      {{ route.isBookmarked ? "Bookmarked" : "Bookmark" }}
+      </a>
                 </div>
 
   </div>
@@ -28,14 +31,16 @@
     import { useRouter } from 'vue-router';
     import { useFormStore } from '@/stores/form';
     import { useRouteStore } from '@/stores/route';
+    import { useAuthStore } from '@/stores/auth';
     import { onMounted, ref, defineEmits } from 'vue';
     import axios from 'axios';
     // Bootstrap의 모든 JavaScript 유틸리티 가져오기
     import * as bootstrap from "bootstrap";
     import "bootstrap/dist/css/bootstrap.min.css";
     import { storeToRefs } from 'pinia';
+    
 
-
+    const AuthStore = useAuthStore();
     const router = useRouter();
     const routeList = ref([]);
     const formStore = useFormStore();
@@ -58,28 +63,51 @@
     }
     
     function toggleBookmark(route) {
-  // 북마크 상태를 반전시킴
-  route.isBookmarked = !route.isBookmarked;
-
-  // 추가적으로 북마크에 추가하는 메소드 실행 가능
-  if (route.isBookmarked) {
-    console.log(`Route ${route.routeId} bookmarked`);
-    // 예: API 호출하여 북마크 추가
-    axios.post(`http://localhost:8080/urs/bookmark/add/`);
-  } else {
-    console.log("hii");
+      if(route.isBookmarked){
+        return;
+      }
+      const bookmarkList = AuthStore.bookmarkList;
+      const isBookmarked = bookmarkList.some(bookmark => bookmark.routeId===route.routeId);
+    // // 추가적으로 북마크에 추가하는 메소드 실행 가능
+    if (!isBookmarked) {
+      // 예: API 호출하여 북마크 추가
+      axios
+      .post(`http://localhost:8080/urs/bookmark/add/${AuthStore.userId}/${route.routeId}`, {}
+        
+      )
+      .then((response) => {
+        bookmarkList.push({userId:AuthStore.userId, routeId: route.routeId}); // 새로운 북마크리스트를 보내야겠지
+        route.isBookmarked = true;
+        console.log(bookmarkList)
+      })
+      .catch((error) => console.error("북마크추가실패"));
+    } else {
+      console.log("hii");
+    }
+    // 그 북마크에 있으면 bookmarked로 하고
+    // 없으면 북마크 추가하는 add book mark 버튼
   }
-}
-    onMounted(() => {
-    const url = "http://localhost:8080/urs/route/all";
 
-    axios({
-    url,
-    method: 'GET',
-  }).then((response) => {
-    console.log(response.data);
-    routeList.value = response.data;
-  });
+      
+    onMounted(() => {
+      const userId = AuthStore.userId; // AuthStore에서 userId 가져오기
+
+// 전체 Route 리스트 가져오기
+axios
+  .get("http://localhost:8080/urs/route/all")
+  .then((response) => {
+    console.log("Routes fetched:", response.data);
+    routeList.value = response.data; // 서버에서 가져온 Route 데이터를 routeList에 저장
+
+    // AuthStore의 bookmarkList와 비교하여 각 Route의 isBookmarked 상태 설정
+    const bookmarkList = AuthStore.bookmarkList;
+    routeList.value.forEach((route) => {
+      route.isBookmarked = bookmarkList.some(
+        (bookmark) => bookmark.routeId === route.routeId
+      );
+    });
+  })
+  .catch((error) => console.error("Failed to fetch routes:", error));
 })
 
 </script>

@@ -3,14 +3,13 @@
 // import axios from "axios";
 // import { useFormStore } from '../stores/form';
 
-
 // const REST_API_URL = "http://localhost:8080/urs/";
 
 // export const useMapStore = defineStore("map", () => {
 //   const routeId = ref(null);
 //   const locationList = ref([]); // 루트 목록을 스토어에서 관리하겠다.
 //   const formStore = useFormStore();
-  
+
 //   //이제 routeID로 location데이터를 ㅏㄱ져오자
 //   // const getLocationList = async function(routeId) {
 //   //   try {
@@ -38,7 +37,5 @@
 //   };
 //   return {locationList, LocationList, fetchLocation}
 // }
- 
-
 
 // );

@@ -2,7 +2,7 @@
   <div class="main-content">
     
     <div class="modal-content">
-       <span class="title-content" style="font-size: 30px; font-weight: bold; text-align: center; display: inline-block;"> Hello {{ id }}</span>
+       <span class="title-content" style="font-size: 30px; font-weight: bold; text-align: center; display: inline-block;"> Hello {{ authStore.routeId }}</span>
        <!-- <span class="bottom-content" style="font-size: 30px; text-align:end; display: inline-block;">회원탈퇴</span> -->
        <button class = 'bottom-content' @click="openURL()">회원탈퇴</button>
        <h2 style="font-size: 30px; font-weight: bold;"> Bookmark List </h2>
@@ -28,18 +28,14 @@
     <h2 style="font-size: 30px; font-weight: bold;"> Achieved List </h2>
     <div> 
       <div class="card" style="width: 18rem;"
-        v-for="(bookmark, index) in bookmarkList"
-        :key="bookmark.routeId"
-        
+   
         >
         <img 
-        :src="`http://localhost:8080/images/${bookmark.routeId}.png`" 
-        :alt="`Route Image for ${bookmark.routeId}`"
-        class="card-img-top"
+
         />
         <div class="card-body">
          <p class="card-text">Some quick ex tent.</p>
-         <button @click="deleteBookmark(bookmark.routeId)">리뷰보기</button>
+         <button >리뷰보기</button>
         </div>
       </div>
     </div>
@@ -58,23 +54,15 @@ const authStore = useAuthStore();
 const userId = authStore.userId;
 const bookmarkList=ref([]);
 
-onMounted(  ()=> {
-     const url="http://localhost:8080/urs/"
-
-      axios({
-        url: `${url}bookmark/${userId}`,
-        method: 'GET',
-      }).then((response) => {
-        console.log(response.data);
-        bookmarkList.value = response.data;
-      });
-
-      
+onMounted( async ()=> {
+ await authStore.fetchBookmarks(authStore.userId);
+ bookmarkList.value = authStore.bookmarkList;
   })
 
   const deleteBookmark = async (routeId) => {
     try {
       await axios.delete(`http://localhost:8080/urs/bookmark/${userId}/${routeId}`);
+      authStore.bookmarkList = authStore.bookmarkList.filter(bookmark => bookmark.routeId !== routeId);
       bookmarkList.value = bookmarkList.value.filter(bookmark => bookmark.routeId !== routeId);
     } catch (error) {
       console.log("북마크삭제실패")
@@ -86,8 +74,8 @@ onMounted(  ()=> {
 <style scoped>
 .main-content {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;

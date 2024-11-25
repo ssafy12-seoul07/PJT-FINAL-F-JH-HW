@@ -29,9 +29,9 @@ public class BookmarkRestController {
 	@Autowired
 	BookmarkService bs;
 	
-	@PostMapping("/add")
-	public ResponseEntity<String> addBookmark(@RequestBody Bookmark bookmark){
-		boolean result = bs.addBookmark(bookmark);
+	@PostMapping("/add/{userId}/{routeId}")
+	public ResponseEntity<String> addBookmark(@PathVariable String userId, @PathVariable int routeId){
+		boolean result = bs.addBookmark(userId, routeId);
 		if(result) {
 			return new ResponseEntity<String>("bookmark successfully added", HttpStatus.OK);
 		} else {

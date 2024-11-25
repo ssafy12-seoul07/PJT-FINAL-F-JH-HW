@@ -7,7 +7,7 @@ import com.ssafy.urs.model.dto.Location;
 import com.ssafy.urs.model.dto.Route;
 
 public interface BookmarkService {
-	boolean addBookmark(Bookmark bookmark);
+	boolean addBookmark(String userId, int routeId);
 	boolean deleteBookmark(String userId, int routeId);
 	List<Location> getAllBookmarks(String userId);
 }

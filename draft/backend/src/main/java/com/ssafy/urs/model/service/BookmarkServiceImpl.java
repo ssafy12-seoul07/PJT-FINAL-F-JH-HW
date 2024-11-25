@@ -18,8 +18,8 @@ public class BookmarkServiceImpl implements BookmarkService {
 	}
 
 	@Override
-	public boolean addBookmark(Bookmark bookmark) {
-		int result=bd.insertBookmark(bookmark);
+	public boolean addBookmark(String userId, int routeId) {
+		int result=bd.insertBookmark(userId, routeId);
 		return result>0;
 	}
 

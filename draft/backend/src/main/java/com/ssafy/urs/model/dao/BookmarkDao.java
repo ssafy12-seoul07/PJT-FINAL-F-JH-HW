@@ -13,7 +13,7 @@ import com.ssafy.urs.model.dto.Route;
 public interface BookmarkDao {
 	//bookmarked
 	//북마크 추가
-	int insertBookmark(Bookmark bookmark);
+	int insertBookmark(String userId, int routeId);
 	//북마크 전체읽기
 	List<Location> selectAllBookmarks(String userId);
 	// 북마크 삭제
