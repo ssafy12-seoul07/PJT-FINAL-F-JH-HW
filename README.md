@@ -100,9 +100,9 @@ cd urs/backend
 ## 주요화면
 
 ![mainpage](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/mainpage.png)
-![routepage](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/routepagewith.png)
-![option1](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/opt1.png)
-![option2](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/opt2.png)
+![routepagewith](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/routepagewith.png)
+![select1](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/select1.png)
+![select2](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/select2.png)
 ![routeResult](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/routeResult.png)
 ![mypage](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/mypage.png)
 
