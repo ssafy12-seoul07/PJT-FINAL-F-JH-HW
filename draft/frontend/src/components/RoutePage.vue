@@ -19,10 +19,10 @@
       🌱 {{ route.calorie}}kcal
       </p>
     <div class="d-flex gap-2"> 
-      <a href="#" class="btn btn-sm btn-primary" 
+      <a href="#" class="btn btn-success" 
       @click="goFormResult(route.routeId)">Go walk!</a>
-      <a href="#" class="btn btn-sm btn-primary"  
-      :class="route.isBookmarked ? 'btn-danger' : 'btn-primary'"
+      <a href="#" class="btn btn-success"  
+      :class="route.isBookmarked ? 'btn btn-warning' : 'btn btn-success'"
       :disabled="route.isBookmarked" 
       @click="toggleBookmark(route)">
       {{ route.isBookmarked ? "Bookmarked" : "Bookmark" }}
@@ -125,14 +125,15 @@
 
 <style  scoped>
 .container {
+  justify-content: center;
   margin-top: 130px; /* 컨테이너의 위쪽 여백 설정 */
-  max-height: 100vh;
-  overflow-y: auto;
+  /* margin-left: 50px; */
+  max-height: calc(100vh - 200px);
+  overflow: auto;
 }
 
 .row {
   display: flex;
-  justify-content: center; /* Flexbox로 중앙 정렬 */
   gap: 10px;
   padding-top:10px;
   justify-content: start;

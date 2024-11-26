@@ -48,7 +48,7 @@
       <!-- 카테고리 UI -->
       <div class="category-container">
 
-        <button class="category-btn" @click="changeStart">시작지점바꾸기</button>
+        <button class="btn btn-outline-warning" @click="changeStart">시작지점바꾸기</button>
       </div>
     </KakaoMap>
     
@@ -189,16 +189,7 @@ export default {
   z-index: 1000; /* 지도 위에 표시되도록 설정 */
 }
 
-.category-btn {
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 5px 10px;
-  margin: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #333;
-}
+
 
 .category-btn:hover {
   background-color: #ddd;

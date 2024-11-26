@@ -11,7 +11,7 @@
     <div class="modal-content2">
       <div>
         <span>selected Route</span> <br>
-        <img 
+        <img class="img" 
         :src="`http://localhost:8080/posters/${store.routeId}.jpg`" 
         :als="`Route Image for ${store.routeId} `"
         :style="{ width: '200px', height: '280px',  }"/><br>
@@ -138,4 +138,8 @@ onMounted(async () => {
   transform: scale(1.05);
 }
 
+.img{
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
 </style>
