@@ -87,7 +87,7 @@
         
       )
       .then((response) => {
-        bookmarkList.push({userId:AuthStore.userId, routeId: route.routeId}); // 새로운 북마크리스트를 보내야겠지
+        bookmarkList.push({userId:AuthStore.userId, routeId: route.routeId}); // 새로운 북마크리스트
         route.isBookmarked = true;
         console.log(bookmarkList)
       })

@@ -42,7 +42,7 @@ export const useAuthStore = defineStore("auth", {
           `http://localhost:8080/urs/bookmark/${userId}/${routeId}`
         );
         this.bookmarkList = this.bookmarkList.filter(
-          // 지울 routeId가 아닌 녀석들만 북마크에 두겠다.
+          // 지울 routeId가 아닌 것들만 북마크에 두겠다.
           bookmark => bookmark.routeId !== routeId
         );
         console.log(`Deleting bookmark for userId: ${userId}, routeId: ${routeId}`);

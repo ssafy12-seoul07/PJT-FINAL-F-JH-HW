@@ -121,10 +121,10 @@ export default {
         realCoordinateList.value=coordinateList.value
       } else {
         console.log("route not reloaded");
-        console.log("왜안될까"+coordinateList.value)
+        console.log("error"+coordinateList.value)
       } 
     }catch (error){
-      console.error("에러", error.message);
+      console.error("error", error.message);
     }
   };
   // //API 호출 후 데이터 처리 
@@ -178,7 +178,7 @@ export default {
 
 /* 카테고리 UI */
 .category-container {
-  position: absolute; /* 지도 위 고정 */
+  position: absolute; 
   top: 10px; /* 지도 상단에서 10px */
   left: 10px; /* 지도 왼쪽에서 10px */
   background: rgba(255, 255, 255, 0.9); /* 반투명 배경 */
@@ -186,7 +186,7 @@ export default {
   border-radius: 8px;
   padding: 쟈랴0px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-  z-index: 1000; /* 지도 위에 표시되도록 설정 */
+  z-index: 1000; 
 }
 
 
