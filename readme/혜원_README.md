@@ -1,13 +1,14 @@
 # **🧩URS (URban Strolling)**
 
 ## **Description**
-A platform to recommend unique strolling routes in Seoul, combining 🌆urban and 🌱natural vibes. It introduces tourists and locals to hidden gems beyond common destinations.
+A platform to recommend unique strolling routes in Seoul, combining 🌆urban and 🌱natural vibes. It introduces tourists and locals to hidden gems beyond common destinations, offering a fresh perspective on the city.
 
 ---
 
 ## **Background & Purpose** 🌟🌍
-The project addresses a common observation: tourists often visit the same spots (e.g., Gyeongbokgung Palace, Hongdae, Gangnam Station) 📸🏙️, missing out on Seoul's lesser-known but beautiful locations 🌿🏞️. Inspired by conversations with exchange students and friends visiting Korea, **URS** aims to showcase the diverse urban and natural beauty of the city 🌆✨.
-By recommending strolling routes tailored to user-selected K-contents (e.g., drama or movie filming locations) 🎬🎭, the project connects users with culturally significant and visually appealing spaces 🏯🌸. This approach encourages deeper engagement with the city and promotes appreciation of its unique blend of modernity and tradition 🏙️⛩️.
+The project addresses a common observation: tourists often visit the same iconic spots such as Gyeongbokgung Palace, Hongdae, and Gangnam Station 📸🏙️, while missing out on Seoul's lesser-known but equally beautiful locations 🌿🏞️. Inspired by conversations with exchange students and visitors to Korea, **URS** aims to highlight the city's diverse urban and natural charm 🌆✨.
+
+By providing personalized walking routes based on user-selected K-contents (e.g., drama or movie filming locations) 🎬🎭, the platform connects users to culturally significant and visually captivating spaces 🏯🌸. This approach deepens user engagement with Seoul and fosters a greater appreciation for the city's unique harmony of modernity and tradition 🏙️⛩️.
 
 
 ---
