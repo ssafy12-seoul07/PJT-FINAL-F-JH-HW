@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.ssafy.urs.model.dao.RouteDao">
+  
+	<select id="selectAllRoutes" resultType="Route">
+		SELECT *
+		FROM Route;
+	</select>
+	
+	<select id="selectExampleRoutes" resultType="Route">
+		SELECT *
+		FROM Route
+		LIMIT 3;
+	</select>
+	
+	<select id="selectRouteById" parameterType="int" resultType="Route">
+		SELECT *
+		FROM Route
+		WHERE route_id=#{routeId};
+	</select>
+
+  	<select id="selectRouteByAttributes"  parameterType = "Route" resultType="Route">
+        SELECT *
+        FROM Route
+        WHERE theme = #{theme}
+          AND district= #{district}
+          AND duration= #{duration};
+    </select>
+	
+	
+	
+
+  
+  </mapper>

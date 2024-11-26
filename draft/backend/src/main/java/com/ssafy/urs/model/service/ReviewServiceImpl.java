@@ -1,0 +1,46 @@
+package com.ssafy.urs.model.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ssafy.urs.model.dao.BookmarkDao;
+import com.ssafy.urs.model.dao.ReviewDao;
+import com.ssafy.urs.model.dto.Review;
+
+@Service
+public class ReviewServiceImpl implements ReviewService{
+	private final ReviewDao vd;
+	
+	public ReviewServiceImpl(ReviewDao vd) {
+		this.vd=vd;
+	}
+	
+
+	@Override
+	public boolean addReview(Review review) {
+		int result = vd.insertReview(review);
+		return result>0;
+	}
+
+	@Override
+	public List<Review> getAllReviews(String userId) {
+	return vd.selectAllReviews(userId);
+	}
+
+	@Override
+	public Review getReviewById(int reviewId) {
+		return vd.selectReviewById(reviewId);
+	}
+
+	@Override
+	public boolean deleteReview(int reviewId) {
+		int result = vd.deleteReview(reviewId);
+		
+		return result>0;
+	}
+	
+	
+
+}
