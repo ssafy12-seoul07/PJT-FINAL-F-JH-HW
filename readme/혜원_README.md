@@ -1,14 +1,13 @@
-# **URS (URban Strolling)**
+# **🧩URS (URban Strolling)**
 
 ## **Description**
-A platform to recommend unique strolling routes in Seoul, combining urban and natural vibes. It introduces tourists and locals to hidden gems beyond common destinations.
+A platform to recommend unique strolling routes in Seoul, combining 🌆urban and 🌱natural vibes. It introduces tourists and locals to hidden gems beyond common destinations.
 
 ---
 
-## **Background & Purpose**
-The project addresses a common observation: tourists often visit the same spots (e.g., Gyeongbokgung Palace, Hongdae, Gangnam Station), missing out on Seoul's lesser-known but beautiful locations. Inspired by conversations with exchange students and friends visiting Korea, **URS** aims to showcase the diverse urban and natural beauty of the city.
-
-By recommending strolling routes tailored to user-selected K-contents (e.g., drama or movie filming locations), the project connects users with culturally significant and visually appealing spaces. This approach encourages deeper engagement with the city and promotes appreciation of its unique blend of modernity and tradition.
+## **Background & Purpose** 🌟🌍
+The project addresses a common observation: tourists often visit the same spots (e.g., Gyeongbokgung Palace, Hongdae, Gangnam Station) 📸🏙️, missing out on Seoul's lesser-known but beautiful locations 🌿🏞️. Inspired by conversations with exchange students and friends visiting Korea, **URS** aims to showcase the diverse urban and natural beauty of the city 🌆✨.
+By recommending strolling routes tailored to user-selected K-contents (e.g., drama or movie filming locations) 🎬🎭, the project connects users with culturally significant and visually appealing spaces 🏯🌸. This approach encourages deeper engagement with the city and promotes appreciation of its unique blend of modernity and tradition 🏙️⛩️.
 
 
 ---
@@ -77,66 +76,6 @@ cd urs/backend
 
 ---
 
-## **Key Features: Implementation Details**
-
-### **Route Recommendation**
-- Backend fetches a route based on user selections:
-```javascript
-async searchRouteId() {
-  try {
-    const response = await axios.get(
-      `${REST_API_URL}route/${this.selectedDistrict}/${this.selectedStep1}/${this.selectedStep2}`
-    );
-    const routeId = response.data;
-    this.setRouteId(routeId);
-
-    const locationResponse = await axios.get(`${REST_API_URL}location/${routeId}`);
-    this.locationInfo = locationResponse.data;
-  } catch (error) {
-    console.error("Error fetching route:", error.message);
-  }
-}
-```
-
-### **Dynamic Start Point Selection**
-- Users can change the route's starting point dynamically:
-```javascript
-function changeStart() {
-  realCoordinateList.value = [...realCoordinateList.value].reverse();
-  console.log(JSON.stringify(realCoordinateList.value));
-}
-```
-- Coordinates updated dynamically:
-
-
-### **Bookmark Feature**
-- Toggle bookmark status for routes:
-```html
-<a href="#" class="btn btn-success"
-   :class="route.isBookmarked ? 'btn btn-warning' : 'btn btn-success'"
-   :disabled="route.isBookmarked"
-   @click="toggleBookmark(route)">
-   {{ route.isBookmarked ? "Bookmarked" : "Bookmark" }}
-</a>
-```
-- Display bookmarks in the user's profile:
-```html
-<div class="card-container">
-  <div class="card" v-for="bookmark in bookmarkList" :key="bookmark.routeId">
-    <img
-      :src="`http://localhost:8080/images/${bookmark.routeId}.jpg`"
-      :alt="`Route Image for ${bookmark.routeId}`"
-      class="card-img-top" />
-    <div class="card-body">
-      {{ routeStore.routeList.find(item => item.routeId === bookmark.routeId).contentName }}
-      <button @click="deleteBookmark(bookmark.routeId)">Unmark</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
 # **API Specification**
 
 | **Category**  | **Functionality**             | **Method** | **API Path**                               | **Method Name**       |
@@ -158,8 +97,8 @@ function changeStart() {
 |               | Show all location info        | GET        | `/location/all`                            | `showAll`             |
 
 
+---
 
-## **Troubleshooting**
 
 ### **Store Management**
 - **Issue**: Undefined values during `onMounted`.
@@ -171,56 +110,47 @@ function changeStart() {
 
 ---
 
-## **Expectation**
-through this service a lot of people especailly who enjoys to watch k contents could enjoy leisure time in korea visiting those spots introduced in k contents and enjoys the decent by walking hidden spots in Seoul.
-not only foreign visitors but also others staying in seoul can also enjoy strolling.
-This project can be broadedned by added more district data and also add other cities like london or paris where those places are often displyaed on the contents in ott channel in this case google map api will with high expection adapted.
-and also auto strolling completion validation system via chat gpt will be added then more useful.
+## **Expectation**🌟
+
+This URS service aims to provide a unique leisure experience for people such as fans of K-contents, by allowing them to visit iconic locations featured in dramas and movies while exploring hidden spots in Seoul through walking routes. Not only foreign visitors but also residents and others staying in Seoul can enjoy strolling and discovering lesser-known gems of the city. The project has the potential to expand beyond Seoul by incorporating data from other districts and cities, such as London or Paris, which are often highlighted in OTT platform content. In such cases, the Google Maps API could be effectively utilized to provide accurate location data and navigation.
+
+Additionally, an automated walking completion validation system, integrated with ChatGPT, will be implemented to further enhance user experience and make the service more interactive and reliable. These features will make the project increasingly valuable and adaptable for a broader audience.
 
 
-## Project Experience Record
 
-### Project Beginning
-Embarking on my first development project, I was eager to prove my abilities and learn through hands-on experience. While there were initial uncertainties about how to address technical gaps and effectively contribute to the team, I approached the challenge with determination and a strong sense of responsibility. 
-As a pair project with one team leader and myself as the sole team member, I focused on shaping the project's theme and structure while ensuring a clear direction for execution. 
-This project was an opportunity to apply everything I had learned and to push myself further in a real-world setting. 
-### Theme Selection
-In the early stages, we brainstormed various ideas within the broad category of sport. 
-We deliberated extensively on two main options: a group table reservation service for football match viewing and a walking route recommendation service. 
-Ultimately, we decided on the walking route recommendation service, utilizing a map API to highlight hidden gems in Seoul. 
-Through the decision-making process, I realized the importance of making timely decisions and set a goal to create a creative and practical service.
+# Project Experience Record 🚀
 
-### Technical Implementation
-The implementation process was divided into backend and frontend development and involved more trial and error than anticipated.
+### Project Beginning 🛠️
 
-- **Backend Development**: I focused on database design and REST API construction, prioritizing data efficiency and optimization. 
-Comparing the initial ERD with the final version, we reduced the number of tables and attributes, which made the implementation smoother. 
-However, I faced significant challenges such as return type errors and issues such as with PathVariable configurations. 
-For instance, an initial design mistake where userId was set to return as an integer caused cascading errors in related functions, leading to a complete revision of API methods. 
-This experience underscored the importance of careful design and preemptive reviews.
+Embarking on my first development project, I was eager to prove my abilities and learn through hands-on experience. While there were initial uncertainties about how to address technical gaps and effectively contribute to the team, I approached the challenge with determination and a strong sense of responsibility. As a pair project with one team leader and myself as the sole team member, I focused on shaping the project's theme and structure while ensuring a clear direction for execution. This project was an opportunity to apply everything I had learned and to push myself further in a real-world setting. 💡📈
 
-- **Frontend Development**: Using Vue.js and Axios, I implemented page transitions, data storage and retrieval, and value integration across pages. 
-A major challenge was establishing a seamless flow of data from one page to the next while triggering associated methods. 
-Initially, there were issues with storing data in the `store` and executing subsequent processes. Through debugging, I was able to stabilize the workflow. 
-Additionally, CSS presented challenges with overlapping settings and combinators, emphasizing the need for stronger UI/UX fundamentals.
+### Theme Selection 🗺️
 
-### Teamwork and Challenges
-Although I participated as a team member, I found myself taking on many responsibilities as the team leader did not actively fulfill their role. 
-From theme selection to project execution and presentation preparation, I led most of the efforts. I initiated morning and evening scrum meetings to maintain project flow and shared progress regularly. 
-Despite strained communication with the team, I persevered to ensure project completion. This experience taught me the importance of communication and role division in collaborative projects, as well as the resilience needed to manage team dynamics.
+In the brainstorming phase, we explored various ideas within the fitness domain. After much deliberation, we narrowed it down to two options: a group reservation service for soccer match viewing ⚽🍻 and a walking route recommendation service 🚶‍♂️🌿. We ultimately chose the latter, utilizing a map API to uncover hidden gems in Seoul. This concept aimed to highlight the city’s unique charm for both local and international users, offering them a fresh way to explore Seoul beyond the usual tourist spots. Through this process, I recognized the importance of making timely and decisive choices, as prolonged indecision can hinder progress. The chosen theme inspired me to focus on creating a service that was both creative and practical. 🎯✨
 
-### Achievements and Lessons Learned
-This project was more than just delivering results; it was a significant learning experience. As my first project, I started with minimal knowledge, consolidating everything I had learned to produce tangible results. 
-Seeing the completed output was rewarding, but I was also aware that our pace lagged behind other teams. This highlighted the need to develop greater efficiency and technical proficiency for future projects.
-Technically, resolving issues such as return type errors, API method revisions, and data flow problems emphasized the importance of precise design and execution. 
-For instance, the mistake in setting userId's return type to an integer caused widespread issues, which taught me the value of accuracy in initial planning. Similarly, during frontend development, I initially struggled with linking stored data to subsequent functionalities but managed to resolve it through systematic debugging. These challenges enhanced my ability to grasp the overall workflow of a project.
-Despite difficulties in collaboration, I learned the value of responsibility and the critical role of communication and role clarity in teamwork. These lessons will undoubtedly serve as valuable assets in future projects.
+### Technical Implementation 💻⚙️
 
-### Future Plans
-I plan to enhance the existing walking route recommendation service by adding a walking certification feature to encourage user participation. 
-This feature will involve using AI to verify user-uploaded photos along with the location name to confirm if the photo matches the intended location. 
-My ultimate goal is to deploy the service successfully. Building on the lessons from this project, I aim to further improve my technical skills and continue creating services that provide practical value.
+The implementation phase required me to take on a full-stack role, dividing my efforts between backend and frontend development. This process, while rewarding, involved significant trial and error. 🔄🧑‍💻
 
+- **Backend Development**: I designed the database and constructed REST APIs with a focus on optimizing data efficiency. Comparing the initial ERD to the final version, I streamlined the structure by reducing table numbers and attributes, simplifying implementation. However, challenges such as return type mismatches and PathVariable configuration issues tested my problem-solving skills. For example, an oversight in setting the `userId` return type to an integer caused cascading errors across multiple API methods, requiring a complete overhaul. This experience highlighted the critical importance of precision in initial design and proactive error prevention. 🗂️🔍
+
+- **Frontend Development**: Utilizing Vue.js and Axios, I implemented page transitions, data storage and retrieval, and seamless integration across components. Establishing a smooth flow of data between pages while triggering necessary methods was a major hurdle. Initial issues arose with storing data in the `store` and linking it to subsequent processes, but systematic debugging allowed me to stabilize these functionalities. Additionally, working with layered CSS settings presented challenges, teaching me the need for more robust UI/UX principles to ensure consistency and maintainability. 🖥️🎨
+
+### Teamwork and Challenges 🤝⚡
+
+As the team member, I found myself taking on responsibilities that extended beyond my role, as the team leader often failed to actively contribute. From defining the project theme to executing tasks and preparing presentations, I drove the majority of the project’s progress. I facilitated daily scrum meetings to maintain focus and regularly shared updates to ensure transparency. Despite strained collaboration, I prioritized completing the project and maintaining momentum. This experience underscored the importance of clear communication and defined roles in collaborative settings, while also teaching me the resilience needed to navigate team dynamics effectively. 🌟📊
+
+### Achievements and Lessons Learned 🏆📚
+
+This project was an intensive learning experience, consolidating the knowledge I had gained so far into a tangible outcome. Witnessing the final product was immensely rewarding, but it also highlighted areas for improvement, such as our slower pace compared to other teams. This realization motivated me to aim for greater efficiency and technical fluency in future projects.
+
+Technically, I overcame several challenges, including resolving API method errors, redesigning the database schema for better optimization, and stabilizing data flows in the frontend. For instance, correcting the return type error in the `userId` field taught me the importance of accuracy in foundational design. Similarly, I learned to manage complex data interactions during frontend development by refining workflows and debugging systematically. These technical hurdles provided invaluable hands-on experience and enhanced my understanding of end-to-end project workflows. 🔧📈
+
+Collaboration difficulties emphasized the importance of taking initiative and maintaining a solution-oriented mindset. I also gained insight into effective project management, including the critical role of communication and the need for shared accountability within a team. 🔄🙌
+
+### Future Plans 🚀📅
+
+Looking ahead, I plan to expand the walking route recommendation service by incorporating a walking certification feature to boost user engagement. This feature will use AI to verify user-uploaded photos alongside location names, ensuring the images correspond to the correct locations. My ultimate goal is to successfully deploy the service while continuing to refine its features. Building on the skills and lessons from this project, I aim to further develop my technical expertise and deliver meaningful, practical solutions in future projects. 🌟🤖
 
 
 ---
