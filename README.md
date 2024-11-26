@@ -53,6 +53,148 @@ URS Seoul은 🎭드라마나 🎬영화 촬영지와 같은 K-콘텐츠 기반�
 | **[위치]**    | 📍 특정 경로 위치 정보 가져오기 | GET        | `/location/{routeId}`                      | `getLocationByRouteId`  |
 |               | 모든 위치 정보 보기              | GET        | `/location/all`                            | `showAll`               |
 
+---
+
+# **URS (URban Strolling)**
+
+## **기술 스택 (Tech Stack)**
+
+### **프론트엔드**
+- **프레임워크**: Vue.js, Pinia
+- **언어**: JavaScript, HTML, CSS
+- **툴**: Axios, Visual Studio Code
+
+### **백엔드**
+- **프레임워크**: Spring Boot
+- **데이터베이스**: MySQL
+
+### **API & 도구**
+- Kakao Map API
+- GitHub, Notion (협업 및 문서화 도구)
+
+---
+
+## **프로젝트 설정 (Project Setup)**
+
+### **프론트엔드 (Vue.js)**
+```bash
+# 프론트엔드 디렉토리로 이동
+cd urs/frontend
+
+# 의존성 설치
+npm install
+
+# 프론트엔드 서버 실행
+npm run serve
+```
+
+### **백엔드 (Spring Boot)**
+```bash
+# 백엔드 디렉토리로 이동
+cd urs/backend
+
+# 백엔드 서버 실행
+./mvnw spring-boot:run
+```
+---
+## 주요화면
+
+![mainpage](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/mainpage.png)
+![routepage](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/routepagewith.png)
+![option1](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/opt1.png)
+![option2](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/opt2.png)
+![routeResult](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/routeResult.png)
+![mypage](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/mypage.png)
+
+
+
+---
+
+## **핵심 기능: 구현 세부 사항 (Key Features: Implementation Details)**
+
+### **루트 추천**
+- 사용자의 선택값에 따라 루트를 추천:
+```javascript
+async searchRouteId() {
+  try {
+    const response = await axios.get(
+      `${REST_API_URL}route/${this.selectedDistrict}/${this.selectedStep1}/${this.selectedStep2}`
+    );
+    const routeId = response.data;
+    this.setRouteId(routeId);
+
+    const locationResponse = await axios.get(`${REST_API_URL}location/${routeId}`);
+    this.locationInfo = locationResponse.data;
+  } catch (error) {
+    console.error("Error fetching route:", error.message);
+  }
+}
+```
+
+### **동적 시작점 변경**
+- 사용자가 루트의 시작점을 변경할 수 있음:
+```javascript
+function changeStart() {
+  realCoordinateList.value = [...realCoordinateList.value].reverse();
+  console.log(JSON.stringify(realCoordinateList.value));
+}
+```
+
+
+### **북마크 기능**
+- 루트의 북마크 상태를 토글:
+```html
+<a href="#" class="btn btn-success"
+   :class="route.isBookmarked ? 'btn btn-warning' : 'btn btn-success'"
+   :disabled="route.isBookmarked"
+   @click="toggleBookmark(route)">
+   {{ route.isBookmarked ? "Bookmarked" : "Bookmark" }}
+</a>
+```
+- 사용자의 북마크 목록을 표시:
+```html
+<div class="card-container">
+  <div class="card" v-for="bookmark in bookmarkList" :key="bookmark.routeId">
+    <img
+      :src="`http://localhost:8080/images/${bookmark.routeId}.jpg`"
+      :alt="`Route Image for ${bookmark.routeId}`"
+      class="card-img-top" />
+    <div class="card-body">
+      {{ routeStore.routeList.find(item => item.routeId === bookmark.routeId).contentName }}
+      <button @click="deleteBookmark(bookmark.routeId)">Unmark</button>
+    </div>
+  </div>
+</div>
+```
+
+---
+
+## **주간 계획 (Weekly Plans)**
+
+### **Week 42**: 초기 설정
+- ERD와 API 명세 초안 작성.
+- 프로젝트 주제와 목표 브레인스토밍.
+
+### **Week 45**: 기능 프로토타이핑
+- 사용자 인증 구현 및 Kakao API 통합.
+- 데이터베이스 연결 최종 확정.
+
+### **Week 46**: 핵심 개발 단계
+- 사용자 등록/로그인 구축.
+- UI/UX 프로토타입 개발 및 지도 기능 통합.
+
+### **Week 47**: 테스트 및 안정화
+- 시스템 전반 테스트 및 주요 버그 수정.
+- 기술 문서 및 사용자 가이드 작성.
+
+### **Week 48**: 최종 발표 준비
+- 기능 정제 및 최종 결과물 마무리.
+- 프로젝트 발표 준비.
+
+---
+
+
+
 ## **기대 효과** 🌟
 
 **URS**는 K-콘텐츠를 좋아하는 사용자들에게 드라마와 영화의 촬영지와 숨겨진 서울의 명소를 연결하는 독특한 여가 경험을 제공합니다. 서울에 거주하거나 방문한 외국인뿐만 아니라, 현지인들 또한 산책을 통해 서울의 잘 알려지지 않은 매력을 발견할 수 있습니다. 
