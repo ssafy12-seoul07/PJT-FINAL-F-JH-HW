@@ -25,7 +25,11 @@ URS Seoul은 🎭드라마나 🎬영화 촬영지와 같은 K-콘텐츠 기반�
 
 ---
 ## 화면설계서
-![ERD](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/Team%20Lync%20ERD.jpg)
+![storyBoard1](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/storyboard1.png)
+![storyBoard2](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/storyboard2.png)
+![storyBoard3](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/storyboard3.png)
+![storyBoard4](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/storyboard3.png)
+![storyBoard5](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/storyboard4.png)
 
 ---
 
