@@ -1,4 +1,4 @@
-# **🧩URS (URban Strolling)**
+# **🧩URS(URban Strolling) Seoul**
 
 ## **Description**
 A platform to recommend unique strolling routes in Seoul, combining 🌆urban and 🌱natural vibes. It introduces tourists and locals to hidden gems beyond common destinations, offering a fresh perspective on the city.
@@ -6,9 +6,9 @@ A platform to recommend unique strolling routes in Seoul, combining 🌆urban an
 ---
 
 ## **Background & Purpose** 🌟🌍
-The project addresses a common observation: tourists often visit the same iconic spots such as Gyeongbokgung Palace, Hongdae, and Gangnam Station 📸🏙️, while missing out on Seoul's lesser-known but equally beautiful locations 🌿🏞️. Inspired by conversations with exchange students and visitors to Korea, **URS** aims to highlight the city's diverse urban and natural charm 🌆✨.
+URS Seoul offers personalized walking paths based on K-contents such as 🎭drama and 🎬movie filming locations. It connects culturally significant and visually appealing spaces 🏯🌸, helping users experience the unique charm of Seoul—a city where the modern and the traditional coexist harmoniously 🏙️⛩️.
 
-By providing personalized walking routes based on user-selected K-contents (e.g., drama or movie filming locations) 🎬🎭, the platform connects users to culturally significant and visually captivating spaces 🏯🌸. This approach deepens user engagement with Seoul and fosters a greater appreciation for the city's unique harmony of modernity and tradition 🏙️⛩️.
+Tourists often visit well-known spots such as Gyeongbokgung Palace, Hongdae, and Gangnam Station 📸🏙️, missing out on Seoul's lesser-known but equally stunning locations. Additionally, Seoul is more than just a city for daily life; it is a place where people can immerse themselves in the scenes of their favorite dramas or movies, walking through familiar filming locations as if they were the protagonists. URS Seoul aims to deliver this exciting experience, allowing users to step into the footsteps of film characters and discover the dynamic beauty and captivating charm of Seoul 🌆✨.
 
 
 ---
@@ -113,7 +113,7 @@ cd urs/backend
 
 ## **Expectation**🌟
 
-This URS service aims to provide a unique leisure experience for people such as fans of K-contents, by allowing them to visit iconic locations featured in dramas and movies while exploring hidden spots in Seoul through walking routes. Not only foreign visitors but also residents and others staying in Seoul can enjoy strolling and discovering lesser-known gems of the city. The project has the potential to expand beyond Seoul by incorporating data from other districts and cities, such as London or Paris, which are often highlighted in OTT platform content. In such cases, the Google Maps API could be effectively utilized to provide accurate location data and navigation.
+This URS Seoul aims to provide a unique leisure experience for people such as fans of K-contents, by allowing them to visit iconic locations featured in dramas and movies while exploring hidden spots in Seoul through walking routes. Not only foreign visitors but also residents and others staying in Seoul can enjoy strolling and discovering lesser-known gems of the city. The project has the potential to expand beyond Seoul by incorporating data from other districts and cities, such as London or Paris, which are often highlighted in OTT platform content. In such cases, the Google Maps API could be effectively utilized to provide accurate location data and navigation.
 
 Additionally, an automated walking completion validation system, integrated with ChatGPT, will be implemented to further enhance user experience and make the service more interactive and reliable. These features will make the project increasingly valuable and adaptable for a broader audience.
 
