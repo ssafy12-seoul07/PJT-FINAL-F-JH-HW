@@ -40,7 +40,7 @@
 
 <script setup>
 import { useFormStore } from '../stores/form';
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import axios from "axios";
 import Step1Form from "@/components/Step1Form.vue";
 import Step2Form from "@/components/Step2Form.vue";
@@ -54,32 +54,28 @@ const selectedDistrict = ref("정보 없음");
 const store = useFormStore();
 const districtOptions = store.districtOptions;
 
-//현재 위치
+// 현재 위치
 navigator.geolocation.getCurrentPosition(success, error);
 
 function success(pos) {
   latitude.value = pos.coords.latitude;
   longitude.value = pos.coords.longitude;
-  console.log(latitude);
-  console.log(longitude);
   const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude.value},${longitude.value}&key=AIzaSyAJOR-gmnvhrB6vYHz3NQWQv8DcTreCqEo`;
 
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       if (data.status === "OK") {
         const addressComponents = data.results[0].address_components;
-        city.value = addressComponents.find((ac) => ac.types.includes("administrative_area_level_1"))?.long_name || "정보 없음";
-        district.value = addressComponents.find((ac) => ac.types.includes("sublocality_level_1"))?.long_name || "정보 없음";
-
+        district.value = addressComponents[2].long_name || "정보 없음";
         selectedDistrict.value = district.value;
-        store.selectedDistrict = district.value;
+        store.setDistrict(district.value);
+        loadWeatherData(); // 위치 기반 날씨 데이터 로드
       } else {
         console.error("역 지오코딩 실패:", data.status);
       }
     })
-    .catch((err) => console.error("API 요청 오류"));
+    .catch((err) => console.error("API 요청 오류", err));
 }
 
 function error(err) {
@@ -101,17 +97,12 @@ const sky = ref(null); // 하늘 상태
 const pop = ref(null); // 강수 확률
 const pty = ref(null);
 
-// 1단계 옵션 로드
-async function loadStep1Options() {
-  // const response = await axios.get("/api/questions/step1");
-  // step1Options.value = response.data;
-}
+// 선택된 지역의 grid 정보
+const districtGrid = computed(() => store.districtGrid);
 
 // 2단계 옵션 로드
 async function handleStep1(selectedOption) {
   selectedStep1.value = selectedOption;
-  // const response = await axios.get(`/api/questions/step2/${selectedOption}`);
-  // step2Options.value = response.data;
   currentStep.value = 2;
 }
 
@@ -119,64 +110,60 @@ async function handleStep1(selectedOption) {
 async function handleStep2(selectedOption) {
   selectedStep2.value = selectedOption; // 로컬 상태 저장
   store.setStep2(selectedOption); // Pinia 스토어 저장
-  // currentStep.value = 3; // 다음 단계로 이동
-  // const response = await axios.get(`/api/questions/route/${selectedOption}`);
-  // routeInfo.value = response.data;
 }
 
+// 지역 변경 이벤트 핸들러
 function handleDistrictChange() {
   store.setDistrict(selectedDistrict.value);
   console.log(store.selectedDistrict); // Pinia 스토어에 저장
+  loadWeatherData(); // 지역 변경 시 날씨 데이터 다시 로드
 }
 
 // 날씨 데이터 로드
 async function loadWeatherData() {
-  const API_URL = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst`;
-  const today = new Date();
-  let year = today.getFullYear();
-  let month = today.getMonth() + 1;
-  let day = today.getDate();
-  month = month < 10 ? "0" + month : month;
-  day = day < 10 ? "0" + day : day;
-  const todayStr = `${year}${month}${day}`;
-  console.log(todayStr);
+  if (!districtGrid.value) {
+    console.error("유효한 지역이 선택되지 않았습니다.");
+    return;
+  }
 
-  axios
-    .get(API_URL, {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+  const day = String(today.getDate()).padStart(2, '0'); // 1~9일도 두 자리로 변환
+
+  const baseDate = `${year}${month}${day}`; // YYYYMMDD 형식
+
+  try {
+    const [nx, ny] = districtGrid.value; // Grid 좌표 가져오기
+    const response = await axios.get("/api/weather/forecast", {
       params: {
-        ServiceKey: "keXqkPkDeCmVX4aIWgC0N8M6kiBklRgfb6WvP+SrMZ7x2xC9yzlg4xazLuD8+4YIJFN9sHnUPISv+5VVyPvopw==",
-        dataType: "JSON",
-        base_date: todayStr, //20231105 형태
-        base_time: "0800",   //이것은 총 8회 발표 0200, 0500, 0800, 1100, 1400, 1700, 2000, 2300 
-        numOfRows: 1000,
-        nx: 61, //역삼위치
-        ny: 125,
+        baseDate, // 기준 날짜
+        baseTime: "0800", // 기준 시간 0200, 0500, 0800, 1100, 1400, 1700, 2000, 2300
+        nx, // x 좌표
+        ny, // y 좌표
       },
-    })
-    .then((response) => {
-      console.log(response.data.response.body.items.item);
-      return response.data.response.body.items.item;
-    })
-    .then((response) => {
-      response.forEach((item) => {
-        if (item.category === "TMP") {
+    });
+
+    console.log(nx);
+    console.log(ny);
+
+    const items = response.data.response.body.items.item;
+
+    items.forEach((item) => {
+      switch (item.category) {
+        case "TMP": // 기온
           tmp.value = item.fcstValue;
-        } else if (item.category === "SKY") {
-          switch (item.fcstValue) {
-            case "1":
-              sky.value = "☀️";
-              break;
-            case "3":
-              sky.value = "⛅";
-              break;
-            case "4":
-              sky.value = "☁️";
-              break;
-          }
-        } else if (item.category === "PTY") {
+          break;
+
+        case "SKY": // 하늘 상태
+          sky.value = item.fcstValue === "1" ? "☀️" : item.fcstValue === "3" ? "⛅" : "☁️";
+          break;
+
+        case "PTY": // 강수 형태
           switch (item.fcstValue) {
             case "0":
-              pty.value = "  "
+              pty.value = " ";
+              break;
             case "1":
               pty.value = "🌧️";
               break;
@@ -190,20 +177,25 @@ async function loadWeatherData() {
               pty.value = "🌦️";
               break;
           }
-        } else if (item.category === "POP") {
+          break;
+
+        case "POP": // 강수 확률
           pop.value = item.fcstValue;
-        }
-      });
+          break;
+      }
     });
-};
+  } catch (error) {
+    console.error("Failed to load weather data:", error);
+  }
+}
 
 // 초기화
 onMounted(() => {
-  loadStep1Options();
-  loadWeatherData();
+  if (store.selectedDistrict) {
+    loadWeatherData(); // 초기 선택된 구의 날씨 데이터 로드
+  }
 });
 </script>
-
 
 <style scoped>
 /* 드롭다운 컨테이너 */
