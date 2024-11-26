@@ -12,7 +12,7 @@ By recommending strolling routes tailored to user-selected K-contents (e.g., dra
 
 ---
 ##
-![Team_Lync_Class_Diagram](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/assets/Team_Lync_Class_Diagram.jpg)
+![Team_Lync_Class_Diagram](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/Team%20Lync%20Class%20Diagram.jpg)
 ---
 
 ## **Key Features**
