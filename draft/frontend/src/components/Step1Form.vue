@@ -44,6 +44,7 @@ function emitNext(option) {
   flex: 1 1 calc(50% - 20px);
   display: flex;
   justify-content: center;
+  margin-bottom: 0.3rem;
 }
 
 .option-button {

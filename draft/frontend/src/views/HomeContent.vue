@@ -7,6 +7,7 @@
                 <router-link to="login" class="button">Log In</router-link>
                 <router-link to="signup" class="button">Sign Up</router-link>
             </div>
+            
         </div>
     </div>
 </template>

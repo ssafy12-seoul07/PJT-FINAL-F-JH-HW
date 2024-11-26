@@ -68,7 +68,7 @@ export const useFormStore = defineStore("form", {
         );
         //getLocationById호출
         console.log("RouteID", response.data);
-        console.log("이까지오나")
+        console.log("error:")
         const routeId = response.data
         this.setRouteId(routeId);
         const locationResponse = await axios.get(`${REST_API_URL}location/${routeId}`);
@@ -76,24 +76,10 @@ export const useFormStore = defineStore("form", {
         this.locationInfo = locationResponse.data; // locationInfo를 state에 저장
         console.log(locationInfo) 
       } catch (error) { 
-        console.error("울고싶네", error.message);
+        console.error("error:", error.message);
       }
     },
 
-    // async searchLocation(){
-    //   try{
-    //     console.log("이까지오나")
-    //     //getLocationById호출
-    //     const locationResponse = await axios.get(`${REST_API_URL}location/${this.routeId}`);
-    //     console.log("Location Response:", locationResponse.data);
-    //     this.locationData = locationResponse.data;
-    //     console.log(locationData.value)
-    //     // const url = locationData.value.imgURL
-    //     console.log("확인")
   
-    //   } catch{
-    //     console.log("location failed");
-    // }
-    // }
   }
 });

@@ -12,11 +12,11 @@
 							</option>
 						</select>
 					</div>
-					<div class="weather">
+					<!-- <div class="weather">
 						<p>Temperature: {{ tmp }}°C</p>
 						<p>Sky: {{ sky }}</p>
 						<p>Rain Probability: {{ pop }}%</p>
-					</div>
+					</div> -->
 				</div>
 				<div class="question-title">
 					<h1>How would you like to take a stroll today?</h1>

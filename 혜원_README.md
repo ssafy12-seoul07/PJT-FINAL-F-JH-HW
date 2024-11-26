@@ -11,6 +11,9 @@ The project addresses a common observation: tourists often visit the same spots 
 By recommending strolling routes tailored to user-selected K-contents (e.g., drama or movie filming locations), the project connects users with culturally significant and visually appealing spaces. This approach encourages deeper engagement with the city and promotes appreciation of its unique blend of modernity and tradition.
 
 ---
+##
+
+---
 
 ## **Key Features**
 1. **Strolling Route Recommendation**:

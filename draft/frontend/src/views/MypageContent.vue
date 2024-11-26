@@ -178,15 +178,14 @@ onMounted( async ()=> {
 .modal-content {
   position: fixed;
   top: 52%;
- 
   transform: translateY(-50%);
   background: rgba(33, 33, 33, 0.95);
   border: 1px solid rgba(128, 128, 128, 0.4);
   border-radius: 1rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
   width: 100%;
-  height: 30em;
-  width: 50em;
+  height: 33em;
+  width: 60em;
   padding: 5em 3em;
 
   text-align:left;

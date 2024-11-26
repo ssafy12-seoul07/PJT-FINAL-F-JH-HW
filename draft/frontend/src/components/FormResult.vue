@@ -10,7 +10,7 @@
     </div>
     <div class="modal-content2">
       <div>
-        <span>selected Route</span> <br>
+        <span style="font-size: 30px; font-style:italic; font-weight: 400">Selected Route</span> <br>
         <img class="img" 
         :src="`http://localhost:8080/posters/${store.routeId}.jpg`" 
         :als="`Route Image for ${store.routeId} `"
@@ -49,14 +49,9 @@ function openURL() {
 }
 
 onMounted(async () => {
-  
   try {
     await store.searchRouteId(); // Route ID와 Location 데이터 로드
     console.log("Route ID from store:", store.routeId);
-
-    // // Location 데이터를 KakaoMap에 전달
-    // locationData.value = store.locationInfo;
-    // console.log("Location Data for KakaoMap:", locationData.value);
   } catch (error) {
     console.error("Error during map data initialization:", error.message);
   }
