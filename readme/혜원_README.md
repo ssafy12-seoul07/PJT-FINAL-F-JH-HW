@@ -16,7 +16,7 @@ By recommending strolling routes tailored to user-selected K-contents (e.g., dra
 ![ERD](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/Team%20Lync%20ERD.jpg)
 ---
 ## Class Diagram
-![Team Lync Class Diagram](https://github.com/user-attachments/assets/Team Lync Class Diagram.jpg)
+![Team Lync Class Diagram](https://github.com/ssafy12-seoul07/PJT-FINAL-F-JH-HW/blob/main/assets/Team%20Lync%20Class%20Diagram.jpg)
 
 ---
 
