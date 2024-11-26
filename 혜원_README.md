@@ -12,7 +12,7 @@ By recommending strolling routes tailored to user-selected K-contents (e.g., dra
 
 ---
 ##
-![Team Lync Class Diagram](https://github.com/user-attachments/assets/Team Lync Class Diagram.jpg)
+![Team_Lync_Class_Diagram](https://github.com/user-attachments/assets/Team_Lync_Class_Diagram.jpg)
 ---
 
 ## **Key Features**
